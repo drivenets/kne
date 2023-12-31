@@ -767,7 +767,6 @@ github.com/cenkalti/backoff/v4 v4.2.1/go.mod h1:Y3VNntkOUPxTVeUxJ/G5vcM//AlwfmyY
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/census-instrumentation/opencensus-proto v0.3.0/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/census-instrumentation/opencensus-proto v0.4.1/go.mod h1:4T9NM4+4Vw91VeyqjLS6ao50K5bOcLKN6Q42XnYaRYw=
-github.com/cespare/xxhash v1.1.0 h1:a6HrQnmkObjyL+Gs60czilIUGqrzKutQD6XZog3p+ko=
 github.com/cespare/xxhash v1.1.0/go.mod h1:XrSqR1VqqWfGrhpAt58auRo0WTKS1nRRg3ghfAqPWnc=
 github.com/cespare/xxhash/v2 v2.1.1/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XLFGgcrjCOs=
 github.com/cespare/xxhash/v2 v2.2.0 h1:DC2CZ1Ep5Y4k3ZQ899DldepgrayRUGE6BBZ/cd9Cj44=
@@ -811,8 +810,6 @@ github.com/docker/go-connections v0.4.0/go.mod h1:Gbd7IOopHjR8Iph03tsViu4nIes5Xh
 github.com/docker/go-units v0.5.0 h1:69rxXcBk27SvSaaxTtLh/8llcHD8vYHT7WSdRZ/jvr4=
 github.com/docker/go-units v0.5.0/go.mod h1:fgPhTUdO+D/Jk86RDLlptpiXQzgHJF7gydDDbaIK4Dk=
 github.com/docopt/docopt-go v0.0.0-20180111231733-ee0de3bc6815/go.mod h1:WwZ+bS3ebgob9U8Nd0kOddGdZWjyMGR8Wziv+TBNwSE=
-github.com/drivenets/cdnos-controller v0.0.0-20231210094648-21a897af971f h1:4v9j0YFOZmPhrZqoPxMTFPtq7lj49hJePRv5jx0trR0=
-github.com/drivenets/cdnos-controller v0.0.0-20231210094648-21a897af971f/go.mod h1:F6Re3vjEW3espnk/CplugRSO7qxuYrkzpQm12PnHoxQ=
 github.com/drivenets/cdnos-controller v0.0.0-20231211104019-91d54b0d5a00 h1:g6VCHSBIFsEGdhBKaQ1y80dpI7R6xw5V9r9jB09ky+4=
 github.com/drivenets/cdnos-controller v0.0.0-20231211104019-91d54b0d5a00/go.mod h1:F6Re3vjEW3espnk/CplugRSO7qxuYrkzpQm12PnHoxQ=
 github.com/dustin/go-humanize v1.0.0/go.mod h1:HtrtbFcZ19U5GC7JDqmcUSB87Iq5E25KnS6fMYU6eOk=
@@ -1072,7 +1069,6 @@ github.com/mattn/go-isatty v0.0.16/go.mod h1:kYGgaQfpe5nmfYZH+SKPsOc2e4SrIfOl2e/
 github.com/mattn/go-isatty v0.0.17/go.mod h1:kYGgaQfpe5nmfYZH+SKPsOc2e4SrIfOl2e/yFXSvRLM=
 github.com/mattn/go-sqlite3 v1.14.14/go.mod h1:NyWgC/yNuGj7Q9rpYnZvas74GogHl5/Z4A/KQRfk6bU=
 github.com/mattn/go-sqlite3 v1.14.15/go.mod h1:2eHXhiwb8IkHr+BDWZGa96P6+rkvnG63S2DGjv9HUNg=
-github.com/matttproud/golang_protobuf_extensions v1.0.4 h1:mmDVorXM7PCGKw94cs5zkfA9PSy5pEvNWRP0ET0TIVo=
 github.com/matttproud/golang_protobuf_extensions/v2 v2.0.0 h1:jWpvCLoY8Z/e3VKvlsiIGKtc+UG6U5vzxaoagmhXfyg=
 github.com/matttproud/golang_protobuf_extensions/v2 v2.0.0/go.mod h1:QUyp042oQthUoa9bqDv0ER0wrtXnBruoNd7aNjkbP+k=
 github.com/minio/asm2plan9s v0.0.0-20200509001527-cdd76441f9d8/go.mod h1:mC1jAcsrzbxHt8iiaC+zU4b1ylILSosueou12R++wfY=
@@ -1099,8 +1095,6 @@ github.com/onsi/ginkgo/v2 v2.11.0 h1:WgqUCUt/lT6yXoQ8Wef0fsNn5cAuMK7+KT9UFRz2tcU
 github.com/onsi/ginkgo/v2 v2.11.0/go.mod h1:ZhrRA5XmEE3x3rhlzamx/JJvujdZoJ2uvgI7kR0iZvM=
 github.com/onsi/gomega v1.27.10 h1:naR28SdDFlqrG6kScpT8VWpu1xWY5nJRCF3XaYyBjhI=
 github.com/onsi/gomega v1.27.10/go.mod h1:RsS8tutOdbdgzbPtzzATp12yT7kM5I5aElG3evPbQ0M=
-github.com/open-traffic-generator/ixia-c-operator v0.3.12 h1:9lMUNm+B8JL2elSfNXRmNMAbohMXOBJbQsa8itReO5o=
-github.com/open-traffic-generator/ixia-c-operator v0.3.12/go.mod h1:Q+ZXCinXxUKcnrJf5PJC1Q7JxUQc5ZPZA85jwVAqIRQ=
 github.com/open-traffic-generator/keng-operator v0.3.13 h1:XTYbqKafrSPF55YxfbTU4x6OEvsslvWKxxEocN959AM=
 github.com/open-traffic-generator/keng-operator v0.3.13/go.mod h1:+koaOnSyrJHdzxnaye+M6k+ZbszQlWI9u3tMxSpORNA=
 github.com/open-traffic-generator/snappi/gosnappi v0.13.0 h1:RdlbT+CIlVum6xbhiFr/IzTvQee5bMa3V4oBWa79UBw=
@@ -1127,8 +1121,8 @@ github.com/openconfig/gribi v1.0.0 h1:xMwEg0mBD+21mOxuFOw0d9dBKuIPwJEhMUUeUulZdL
 github.com/openconfig/gribi v1.0.0/go.mod h1:VFqGH2ZPFIfnKTimP4/AQB4OK0eySW5muJNFxXAwP6k=
 github.com/openconfig/grpctunnel v0.0.0-20220819142823-6f5422b8ca70 h1:t6SvvdfWCMlw0XPlsdxO8EgO+q/fXnTevDjdYREKFwU=
 github.com/openconfig/grpctunnel v0.0.0-20220819142823-6f5422b8ca70/go.mod h1:OmTWe7RyZj2CIzIgy4ovEBzCLBJzRvWSZmn7u02U9gU=
-github.com/drivenets/kne v0.1.15 h1:3ADQpUasGv23V53KlkLdaJrMWM6yyJ4EGtJvFyVzCUA=
-github.com/drivenets/kne v0.1.15/go.mod h1:4rV0EbqxQec3BRvvkcrsponO6XLlMYFuNynkPAWjaMw=
+github.com/openconfig/kne v0.1.16 h1:3bvkinEoT4xo0c5kcqnotdboq3ZfFHoVRP1YZja97W0=
+github.com/openconfig/kne v0.1.16/go.mod h1:WROHtukCSPVMFEE8dfIec9RneqLDNqaFf92wTAVuAvk=
 github.com/openconfig/lemming/operator v0.2.0 h1:dovZnR6lQkOHXcODli1NDOr/GVYrBY05KS5X11jxVbw=
 github.com/openconfig/lemming/operator v0.2.0/go.mod h1:LKgEXSR5VK2CAeh2uKijKAXFj42uQuwakrCHVPF0iII=
 github.com/openconfig/ondatra v0.4.1 h1:xGjdCeYlfKuEOk4PaICXgoi5PDat17h5lqHSMu98gDU=
@@ -2032,7 +2026,6 @@ k8s.io/client-go v0.28.4 h1:Np5ocjlZcTrkyRJ3+T3PkXDpe4UpatQxj85+xjaD2wY=
 k8s.io/client-go v0.28.4/go.mod h1:0VDZFpgoZfelyP5Wqu0/r/TRYcLYuJ2U1KEeoaPa1N4=
 k8s.io/component-base v0.28.4 h1:c/iQLWPdUgI90O+T9TeECg8o7N3YJTiuz2sKxILYcYo=
 k8s.io/component-base v0.28.4/go.mod h1:m9hR0uvqXDybiGL2nf/3Lf0MerAfQXzkfWhUY58JUbU=
-k8s.io/klog v1.0.0 h1:Pt+yjF5aB1xDSVbau4VsWe+dQNzA0qv1LlXdC2dF6Q8=
 k8s.io/klog/v2 v2.110.1 h1:U/Af64HJf7FcwMcXyKm2RPM22WZzyR7OSpYj5tg3cL0=
 k8s.io/klog/v2 v2.110.1/go.mod h1:YGtd1984u+GgbuZ7e08/yBuAfKLSO0+uR1Fhi6ExXjo=
 k8s.io/kube-openapi v0.0.0-20231206194836-bf4651e18aa8 h1:vzKzxN5uyJZLY8HL1/OovW7BJefnsBIWt8T7Gjh2boQ=
