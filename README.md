@@ -19,53 +19,53 @@ implementations and data plane for limited certifications. The idea of this
 project is to provide a standard "interface" so that vendors can produce a
 standard container implementation which can be used to build complex topologies.
 
-*   Have standard lifecycle management infrastructure for allowing multiple vendor
+* Have standard lifecycle management infrastructure for allowing multiple vendor
     device emulations to be present in a single "topology"
 
-*   Allow for control plane access via standard k8s networking
+* Allow for control plane access via standard k8s networking
 
-*   Provide a common networking interface for the forwarding plane between network
+* Provide a common networking interface for the forwarding plane between network
     pods.
 
-    *   Data plane wires between pods
+  * Data plane wires between pods
 
-    *   Control plane wires between topology manager
+  * Control plane wires between topology manager
 
-*   Define service implementation for allowing interaction with the topology
+* Define service implementation for allowing interaction with the topology
     manager service.
 
-    *   Topology manager is the public API for allowing external users to manipulate
+  * Topology manager is the public API for allowing external users to manipulate
         the link state in the topology.
 
-    *   The topology manager will run as a service in k8s environment.
+  * The topology manager will run as a service in k8s environment.
 
-    *   It will provide a gRPC interface for tests to interact with
+  * It will provide a gRPC interface for tests to interact with
 
-    *   It will listen to CRDs published via the network device pods for discovery
+  * It will listen to CRDs published via the network device pods for discovery
 
-*   Data plane connections for connectivity between pods must be a public
+* Data plane connections for connectivity between pods must be a public
     transport mechanism
 
-    *   This can't be implemented as just exposing "x eth devices on the pod"
+  * This can't be implemented as just exposing "x eth devices on the pod"
         because Linux doesn't understand the  associated control messages which are
         needed to make this work like a wire.
 
-    *   Transceiver state, optical characteristics, wire state, packet filtering /
+  * Transceiver state, optical characteristics, wire state, packet filtering /
         shaping / drops
 
-    *   LACP or other port aggregation protocols or APS cannot be simulated
+  * LACP or other port aggregation protocols or APS cannot be simulated
         correctly
 
-    *   The topology manager will start a topology agent on each host for the pod to
+  * The topology manager will start a topology agent on each host for the pod to
         directly interact with.
 
-    *   The topology agent will provide the connectivity between nodes
+  * The topology agent will provide the connectivity between nodes
 
-*   Define how pods boot an initial configuration
+* Define how pods boot an initial configuration
 
-    *   Ideally, this method would allow for dynamic
+  * Ideally, this method would allow for dynamic
 
-*   Define how pods express services for use in-cluster as well as external
+* Define how pods express services for use in-cluster as well as external
     services
 
 ## Use Cases
