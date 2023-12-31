@@ -1,10 +1,10 @@
 # Kubernetes Network Emulation
 
-[![Actions Status](https://github.com/drivenets/kne/workflows/Go/badge.svg)](https://github.com/drivenets/kne/actions)
-[![Go Report Card](https://goreportcard.com/badge/github.com/drivenets/kne)](https://goreportcard.com/report/github.com/drivenets/kne)
-[![GoDoc](https://godoc.org/istio.io/istio?status.svg)](https://pkg.go.dev/github.com/drivenets/kne)
+[![Actions Status](https://github.com/openconfig/kne/workflows/Go/badge.svg)](https://github.com/drivenets/kne/actions)
+[![Go Report Card](https://goreportcard.com/badge/github.com/openconfig/kne)](https://goreportcard.com/report/github.com/drivenets/kne)
+[![GoDoc](https://godoc.org/istio.io/istio?status.svg)](https://pkg.go.dev/github.com/openconfig/kne)
 [![License: BSD](https://img.shields.io/badge/license-Apache%202-blue)](https://opensource.org/licenses/Apache-2.0)
-[![GitHub Super-Linter](https://github.com/drivenets/kne/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![GitHub Super-Linter](https://github.com/openconfig/kne/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
 [![Coverage Status](https://coveralls.io/repos/github/openconfig/kne/badge.svg?branch=main)](https://coveralls.io/github/openconfig/kne?branch=main)
 
 This is not an officially supported Google product.
@@ -19,36 +19,54 @@ implementations and data plane for limited certifications. The idea of this
 project is to provide a standard "interface" so that vendors can produce a
 standard container implementation which can be used to build complex topologies.
 
-* Have standard lifecycle management infrastructure for allowing multiple vendor
-  device emulations to be present in a single "topology"
-* Allow for control plane access via standard k8s networking
-* Provide a common networking interface for the forwarding plane between network
-  pods.
-  * Data plane wires between pods
-  * Control plane wires between topology manager
-* Define service implementation for allowing interaction with the topology
-  manager service.
-  * Topology manager is the public API for allowing external users to manipulate
-    the link state in the topology.
-  * The topology manager will run as a service in k8s environment.
-  * It will provide a gRPC interface for tests to interact with
-  * It will listen to CRDs published via the network device pods for discovery
-* Data plane connections for connectivity between pods must be a public
-  transport mechanism
-  * This can't be implemented as just exposing "x eth devices on the pod"
-    because Linux doesn't understand the  associated control messages which are
-    needed to make this work like a wire.
-  * Transceiver state, optical characteristics, wire state, packet filtering /
-    shaping / drops
-  * LACP or other port aggregation protocols or APS cannot be simulated
-    correctly
-  * The topology manager will start a topology agent on each host for the pod to
-    directly interact with.
-  * The topology agent will provide the connectivity between nodes
-* Define how pods boot an initial configuration
-  * Ideally, this method would allow for dynamic
-* Define how pods express services for use in-cluster as well as external
-  services
+*   Have standard lifecycle management infrastructure for allowing multiple vendor
+    device emulations to be present in a single "topology"
+
+*   Allow for control plane access via standard k8s networking
+
+*   Provide a common networking interface for the forwarding plane between network
+    pods.
+
+    *   Data plane wires between pods
+
+    *   Control plane wires between topology manager
+
+*   Define service implementation for allowing interaction with the topology
+    manager service.
+
+    *   Topology manager is the public API for allowing external users to manipulate
+        the link state in the topology.
+
+    *   The topology manager will run as a service in k8s environment.
+
+    *   It will provide a gRPC interface for tests to interact with
+
+    *   It will listen to CRDs published via the network device pods for discovery
+
+*   Data plane connections for connectivity between pods must be a public
+    transport mechanism
+
+    *   This can't be implemented as just exposing "x eth devices on the pod"
+        because Linux doesn't understand the  associated control messages which are
+        needed to make this work like a wire.
+
+    *   Transceiver state, optical characteristics, wire state, packet filtering /
+        shaping / drops
+
+    *   LACP or other port aggregation protocols or APS cannot be simulated
+        correctly
+
+    *   The topology manager will start a topology agent on each host for the pod to
+        directly interact with.
+
+    *   The topology agent will provide the connectivity between nodes
+
+*   Define how pods boot an initial configuration
+
+    *   Ideally, this method would allow for dynamic
+
+*   Define how pods express services for use in-cluster as well as external
+    services
 
 ## Use Cases
 
