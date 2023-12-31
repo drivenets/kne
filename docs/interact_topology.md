@@ -61,7 +61,7 @@ $ ssh admin@192.168.11.50
 (admin@192.168.11.50) Password: <admin>
 ```
 
-1.  Get the IP range used by KNE services:
+1. Get the IP range used by KNE services:
 
     ```bash
     $ kubectl get services -n multivendor
@@ -81,7 +81,7 @@ $ ssh admin@192.168.11.50
 
     In this case the IP range would be `192.168.11.*`.
 
-2.  Edit your SSH config found at `~/.ssh/config` to include:
+1. Edit your SSH config found at `~/.ssh/config` to include:
 
     ```bash
     Host 192.168.11.*
@@ -366,4 +366,3 @@ func TestTrivial(t *testing.T) {
     }
 }
 ```
-
