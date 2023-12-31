@@ -47,9 +47,9 @@ in our multi-node cluster.
 This guide assumes a multi-node cluster has already been set up. The cluster
 should adhere to these restrictions:
 
-*   Use a pod networking add-on [compatible with MetalLB](https://metallb.universe.tf/installation/network-addons/)
+- Use a pod networking add-on [compatible with MetalLB](https://metallb.universe.tf/installation/network-addons/)
 
-*   Use dockerd as the [CRI](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-runtime)
+- Use dockerd as the [CRI](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-runtime)
 
 The following optional section shows how to create a multi-node cluster using
 `kubeadm` on GCP. Skip directly to the
