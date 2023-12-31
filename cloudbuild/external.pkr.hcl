@@ -87,6 +87,9 @@ build {
       "sudo apt-get -o DPkg::Lock::Timeout=60 update",
       "sudo apt-get -o DPkg::Lock::Timeout=60 install kubelet kubeadm kubectl -y",
       "kubectl version --client",
+      "echo 'source <(kubectl completion bash)' >> ~/.bashrc",
+      "echo 'alias k=kubectl' >> ~/.bashrc",
+      "echo 'complete -o default -F __start_kubectl k' >> ~/.bashrc",
     ]
   }
 
