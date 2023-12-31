@@ -292,4 +292,3 @@ service-r102   LoadBalancer   10.107.163.133   172.18.0.116   6030:32344/TCP,22:
 service-r103   LoadBalancer   10.96.185.215    <pending>      6030:31092/TCP,22:30549/TCP,443:32424/TCP   25m
 ...
 ```
-
