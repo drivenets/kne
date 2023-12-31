@@ -146,7 +146,7 @@ Field           | Type       | Description
 
 Field           | Type       | Description
 --------------- | ---------- | -----------
-`operator`      | string     | Path of the yaml file to create a Lemming operator in the cluster. The validated operator for use with KNE can be found [here](https://github.com/drivenets/kne/tree/main/manifests/controllers/lemming/manifest.yaml).
+`operator`      | string     | Path of the yaml file to create a Lemming operator in the cluster. The validated operator for use with KNE can be found [here](https://github.com/openconfig/kne/tree/main/manifests/controllers/lemming/manifest.yaml).
 ~~`manifests`~~ | ~~string~~ | ~~Path of the directory holding the manifests to create a Lemming operator in the cluster. The directory is expected to contain a file with the name `manifest.yaml`.~~
 
 </details>
@@ -154,7 +154,7 @@ Field           | Type       | Description
 ---
 
 The basic deployment yaml file can be found in the GitHub repo at
-[deploy/kne/kind-bridge.yaml](https://github.com/drivenets/kne/tree/main/deploy/kne/kind-bridge.yaml).
+[deploy/kne/kind-bridge.yaml](https://github.com/openconfig/kne/tree/main/deploy/kne/kind-bridge.yaml).
 
 This config specifies `kind` as the cluster, `metallb` as the ingress, and
 `meshnet` as the CNI. Additionally, the config instructs `kindnet` CNI to use
@@ -298,13 +298,13 @@ Global Flags:
 ```
 
 A topology file is a textproto of the `Topology`
-[message](https://github.com/drivenets/kne/blob/df91c62eb7e2a1abbf0a803f5151dc365b6f61da/proto/topo.proto#L26).
+[message](https://github.com/openconfig/kne/blob/df91c62eb7e2a1abbf0a803f5151dc365b6f61da/proto/topo.proto#L26).
 This file specifies all of the nodes and links of your desired topology. In the
 node definitions interfaces, services, and initial configs can be specified.
 
 An example topology containing 4 DUT nodes (Arista, Cisco, Nokia, and Juniper)
 and 1 ATE node (Keysight) can be found under the examples directory at
-[examples/multivendor/multivendor.pb.txt](https://github.com/drivenets/kne/blob/main/examples/multivendor/multivendor.pb.txt).
+[examples/multivendor/multivendor.pb.txt](https://github.com/openconfig/kne/blob/main/examples/multivendor/multivendor.pb.txt).
 The initial vendor router configs referenced in the topology are found
 [here](https://github.com/drivenets/kne/tree/main/examples/multivendor)
 See the [push config](interact_topology.md#push_config) section for details
