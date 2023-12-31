@@ -19,8 +19,7 @@ implementations and data plane for limited certifications. The idea of this
 project is to provide a standard "interface" so that vendors can produce a
 standard container implementation which can be used to build complex topologies.
 
-* Have standard lifecycle management infrastructure for allowing multiple vendor
-    device emulations to be present in a single "topology"
+* Have standard lifecycle management infrastructure for allowing multiple vendor device emulations to be present in a single "topology"
 
 * Allow for control plane access via standard k8s networking
 
