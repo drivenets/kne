@@ -238,7 +238,7 @@ Container images can be hosted in multiple locations. For example
 [DockerHub](https://hub.docker.com/) hosts open sourced containers. [Google
 Artifact Registries](https://cloud.google.com/artifact-registry) can be used to
 host images with access control. The [KNE topology
-proto](https://github.com/drivenets/kne/blob/df91c62eb7e2a1abbf0a803f5151dc365b6f61da/proto/topo.proto#L117),
+proto](https://github.com/openconfig/kne/blob/df91c62eb7e2a1abbf0a803f5151dc365b6f61da/proto/topo.proto#L117),
 the manifests, and controllers can all specify containers that get pulled from
 their source locations and get used in the cluster.
 
@@ -306,7 +306,7 @@ An example topology containing 4 DUT nodes (Arista, Cisco, Nokia, and Juniper)
 and 1 ATE node (Keysight) can be found under the examples directory at
 [examples/multivendor/multivendor.pb.txt](https://github.com/openconfig/kne/blob/main/examples/multivendor/multivendor.pb.txt).
 The initial vendor router configs referenced in the topology are found
-[here](https://github.com/drivenets/kne/tree/main/examples/multivendor)
+[here](https://github.com/openconfig/kne/tree/main/examples/multivendor)
 See the [push config](interact_topology.md#push_config) section for details
 about pushing config after initial creation.
 
