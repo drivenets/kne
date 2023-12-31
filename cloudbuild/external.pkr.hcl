@@ -157,7 +157,7 @@ build {
     ]
   }
 
-    provisioner "shell" {
+  provisioner "shell" {
     inline = [
       "echo Installing openconfig tools...",
       "sudo apt-get -o DPkg::Lock::Timeout=60 install tree -y",
