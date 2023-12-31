@@ -23,7 +23,7 @@ nodes: {
         config_path: "/config_load"
         config_file: "default"
         file: "cdnos2.cfg"
-        image: "pr-registry.dev.drivenets.net/cdnos_pr_61596:19.1.0.1_priv.61596.59ad5662f25a3760114008c0e51c2ef1b583ae7e"
+        image: "registry.dev.drivenets.net/devops/cdnos_pr_61596:19.1.0.1_priv.61596.59ad5662f25a3760114008c0e51c2ef1b583ae7e"
     }
     model: "CDNOS"
 }
