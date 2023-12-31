@@ -1,7 +1,7 @@
 # How to: verify and use the services on cPTX
 
 This examples shows about how to verify and use the gRPC services on the cPTX running in the KNE cluster.
-Prerequisite: follow the KNE docs [docs/README.md](https://github.com/drivenets/kne/tree/main/docs) to bring up a cluster using the KNE config `cptx-ixia.pb.txt`.
+Prerequisite: follow the KNE docs [docs/README.md](https://github.com/openconfig/kne/tree/main/docs) to bring up a cluster using the KNE config `cptx-ixia.pb.txt`.
 This example config shows how to connect 3 of cPTX's channelized ports with 3 of continerized ixia's (otg) ports.
 Following this example a cPTX can be connected to another cPTX or any other container supported by KNE.
 
