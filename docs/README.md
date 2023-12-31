@@ -1,4 +1,9 @@
-# KNE User How To
+# KNE Documentation
+
+KNE documentation can be found in this directory. There are multiple resources
+found here, each is described below.
+
+## User How To
 
 KNE is a Google initiative to develop tooling for quickly setting up topologies
 of containers running various device OSes.
