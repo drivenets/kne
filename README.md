@@ -29,7 +29,7 @@ standard container implementation which can be used to build complex topologies.
 * Define service implementation for allowing interaction with the topology
   manager service.
   * Topology manager is the public API for allowing external users to manipulate
-        the link state in the topology.
+    the link state in the topology.
   * The topology manager will run as a service in k8s environment.
   * It will provide a gRPC interface for tests to interact with
   * It will listen to CRDs published via the network device pods for discovery
