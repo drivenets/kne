@@ -77,7 +77,7 @@ go install sigs.k8s.io/kind@v0.19.0
 Clone the repo:
 
 ```bash
-git clone https://github.com/drivenets/kne.git
+git clone https://github.com/openconfig/kne.git
 ```
 
 Install the `kne` binary:
