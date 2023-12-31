@@ -146,7 +146,7 @@ nodes: {
 This will configure the node to expose `gnmi` on port `9339` externally
 regardless of which port the gNMI server is running on inside the container.
 
-<details> 
+<details>
 <summary><h4>Arista</h4></summary>
 
 gNMI is enabled for Arista node `r1` in the multivendor node by default.
@@ -226,25 +226,25 @@ Authorization required: no
 Notification timestamp: last change time
 ```
 
-</details> 
+</details>
 
-<details> 
+<details>
 <summary><h4>Cisco</h4></summary>
 
 See the external 8000e with services
 [README](https://github.com/openconfig/kne/blob/main/examples/cisco/8000e/README.md).
 
-</details> 
+</details>
 
-<details> 
+<details>
 <summary><h4>Nokia</h4></summary>
 
 See the external SR Linux
 [guide](http://learn.srlinux.dev/tutorials/infrastructure/kne/srl-with-oc-services/).
 
-</details> 
+</details>
 
-<details> 
+<details>
 <summary><h4>Juniper</h4></summary>
 
 See the external cptx with services
@@ -256,7 +256,7 @@ See the external cptx with services
 
 #### Using the CLI
 
-<details> 
+<details>
 <summary><h5>gNMI</h5></summary>
 
 Install the `gNMIc` command line tool:
@@ -276,9 +276,9 @@ using `gnmic`:
 gnmic subscribe -a <external-ip>:9339 --path /components --skip-verify -u <username> -p <password> --format flat
 ```
 
-</details> 
+</details>
 
-<details> 
+<details>
 <summary><h5>gNOI</h5></summary>
 
 Install the `gNOIc` command line tool:
@@ -298,9 +298,9 @@ using `gnoic`:
 gnoic system time -a <external-ip>:9337 --skip-verify -u <username> -p <password>
 ```
 
-</details> 
+</details>
 
-<details> 
+<details>
 <summary><h5>gRIBI</h5></summary>
 
 Install the `gRIBIc` command line tool:
