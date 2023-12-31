@@ -46,9 +46,9 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 	log "k8s.io/klog/v2"
 
-	_ "github.com/openconfig/kne/topo/node/alpine"
 	_ "github.com/openconfig/kne/topo/node/arista"
 	_ "github.com/openconfig/kne/topo/node/cisco"
+	_ "github.com/openconfig/kne/topo/node/drivenets"
 	_ "github.com/openconfig/kne/topo/node/gobgp"
 	_ "github.com/openconfig/kne/topo/node/host"
 	_ "github.com/openconfig/kne/topo/node/juniper"

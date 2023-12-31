@@ -1,0 +1,35 @@
+name: "cdnos-multivendor-demo"
+nodes: {
+    name: "srl1"
+    vendor: NOKIA
+    model: "ixr6e"
+    config:{
+        # when `image` is not specified under `config`, the "ghcr.io/nokia/srlinux:latest" container image is used by default
+        # SR Linux can accept both complete config files in JSON format, or partial/full config snippets in the CLI format.
+        # nodes are configured with a partial config snippet in CLI format that adds configuration relevant for this example lab.
+        file: "config.cfg"
+    }
+    interfaces: {
+        key: "e1-1"
+        value: {
+            name: "ethernet-1/1"
+        }
+    }
+}
+nodes: {
+    name: "cdnos1"
+    vendor: DRIVENETS
+    config: {
+        config_path: "/config_load"
+        config_file: "default"
+        file: "cdnos2.cfg"
+        image: "pr-registry.dev.drivenets.net/cdnos_pr_61596:19.1.0.1_priv.61596.59ad5662f25a3760114008c0e51c2ef1b583ae7e"
+    }
+    model: "CDNOS"
+}
+links: {
+    a_node: "srl1"
+    a_int: "e1-1"
+    z_node: "cdnos1"
+    z_int: "eno0"
+}

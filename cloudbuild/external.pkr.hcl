@@ -87,9 +87,6 @@ build {
       "sudo apt-get -o DPkg::Lock::Timeout=60 update",
       "sudo apt-get -o DPkg::Lock::Timeout=60 install kubelet kubeadm kubectl -y",
       "kubectl version --client",
-      "echo 'source <(kubectl completion bash)' >> ~/.bashrc",
-      "echo 'alias k=kubectl' >> ~/.bashrc",
-      "echo 'complete -o default -F __start_kubectl k' >> ~/.bashrc",
     ]
   }
 
@@ -133,11 +130,11 @@ build {
     inline = [
       "echo Cloning openconfig/kne github repo...",
       "sudo apt-get -o DPkg::Lock::Timeout=60 install git -y",
-      "git clone -b ${var.branch_name} https://github.com/openconfig/kne.git",
+      "git clone -b ${var.branch_name} https://github.com/drivenets/kne.git",
       "cd kne",
       "PATH=$PATH:/usr/local/go/bin",
-      "/home/$USER/go/bin/go-licenses check github.com/openconfig/kne/kne_cli",
-      "/home/$USER/go/bin/go-licenses save github.com/openconfig/kne/kne_cli --save_path=\"../third_party/licenses/kne_cli\"",
+      "/home/$USER/go/bin/go-licenses check github.com/drivenets/kne/kne_cli",
+      "/home/$USER/go/bin/go-licenses save github.com/drivenets/kne/kne_cli --save_path=\"../third_party/licenses/kne_cli\"",
       "cd kne_cli",
       "/usr/local/go/bin/go build -o kne",
       "sudo cp kne /usr/local/bin/",
@@ -154,16 +151,6 @@ build {
       "PATH=$PATH:/usr/local/go/bin",
       "/home/$USER/go/bin/go-licenses check github.com/openconfig/ondatra",
       "/home/$USER/go/bin/go-licenses save github.com/openconfig/ondatra --save_path=\"../third_party/licenses/ondatra\"",
-    ]
-  }
-
-  provisioner "shell" {
-    inline = [
-      "echo Installing openconfig tools...",
-      "sudo apt-get -o DPkg::Lock::Timeout=60 install tree -y",
-      "bash -c \"$(curl -sL https://get-gnmic.openconfig.net)\"",
-      "bash -c \"$(curl -sL https://get-gribic.kmrd.dev)\"",
-      "bash -c \"$(curl -sL https://get-gnoic.kmrd.dev)\"",
     ]
   }
 }

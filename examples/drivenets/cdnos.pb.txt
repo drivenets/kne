@@ -1,0 +1,29 @@
+name: "cdnos-demo"
+nodes: {
+    name: "cdnos1"
+    vendor: DRIVENETS
+    config: {
+        config_file: "default"
+        config_path: "/config_load"
+        file: "cdnos1.cfg"
+        image: "pr-registry.dev.drivenets.net/cdnos_pr_62066:19.1.0.1_priv.62066.88c3b4104300e8a701b34b10b72a09b878dea685"
+    }
+    model: "CDNOS"
+}
+nodes: {
+    name: "cdnos2"
+    vendor: DRIVENETS
+    config: {
+        config_file: "default"
+        config_path: "/config_load"
+        file: "cdnos2.cfg"
+        image: "pr-registry.dev.drivenets.net/cdnos_pr_62066:19.1.0.1_priv.62066.88c3b4104300e8a701b34b10b72a09b878dea685"
+    }
+    model: "CDNOS"
+}
+links: {
+    a_node: "cdnos1"
+    a_int: "eno0"
+    z_node: "cdnos2"
+    z_int: "eno0"
+}

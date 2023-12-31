@@ -96,7 +96,7 @@ Field  | Type      | Description
 Field           | Type       | Description
 --------------- | ---------- | -----------
 `ip_count`      | int        | Number of IP addresses to include in the available pool.
-`manifest`      | string     | Path of the manifest yaml file to create MetalLB in the cluster. The validated manifest for use with KNE can be found [here](https://github.com/openconfig/kne/tree/main/manifests/metallb/manifest.yaml).
+`manifest`      | string     | Path of the manifest yaml file to create MetalLB in the cluster. The validated manifest for use with KNE can be found [here](https://github.com/drivenets/kne/tree/main/manifests/metallb/manifest.yaml).
 ~~`manifests`~~ | ~~string~~ | ~~Path of the directory holding the manifests to create MetalLB in the cluster. The directory is expected to contain a file with the name `metallb-native.yaml`.~~
 
 #### CNI
@@ -110,7 +110,7 @@ Field  | Type      | Description
 
 Field           | Type       | Description
 --------------- | ---------- | -----------
-`manifest`      | string     | Path of the manifest yaml file to create Meshnet in the cluster. The validated manifest for use with KNE can be found [here](https://github.com/openconfig/kne/tree/main/manifests/meshnet/grpc/manifest.yaml).
+`manifest`      | string     | Path of the manifest yaml file to create Meshnet in the cluster. The validated manifest for use with KNE can be found [here](https://github.com/drivenets/kne/tree/main/manifests/meshnet/grpc/manifest.yaml).
 ~~`manifests`~~ | ~~string~~ | ~~Path of the directory holding the manifests to create Meshnet in the cluster. The directory is expected to contain a file with the name `manifest.yaml`.~~
 
 #### Controllers
@@ -124,29 +124,29 @@ Field  | Type      | Description
 
 Field           | Type       | Description
 --------------- | ---------- | -----------
-`operator`      | string     | Path of the yaml file to create an IxiaTG operator in the cluster. The validated operator for use with KNE can be found [here](https://github.com/openconfig/kne/tree/main/manifests/controllers/keysight/ixiatg-operator.yaml).
-`configMap`     | string     | Path of the yaml file to create an IxiaTG config map in the cluster. The validated config map for use with KNE can be found [here](https://github.com/openconfig/kne/tree/main/manifests/controllers/keysight/ixiatg-configmap.yaml).
+`operator`      | string     | Path of the yaml file to create an IxiaTG operator in the cluster. The validated operator for use with KNE can be found [here](https://github.com/drivenets/kne/tree/main/manifests/controllers/keysight/ixiatg-operator.yaml).
+`configMap`     | string     | Path of the yaml file to create an IxiaTG config map in the cluster. The validated config map for use with KNE can be found [here](https://github.com/drivenets/kne/tree/main/manifests/controllers/keysight/ixiatg-configmap.yaml).
 ~~`manifests`~~ | ~~string~~ | ~~Path of the directory holding the manifests to create an IxiaTG operator in the cluster. The directory is expected to contain a file with the name `ixiatg-operator.yaml`. Optionally the directory can contain a file with the name `ixiatg-configmap.yaml` to apply a config map of the desired container images used by the controller.~~
 
 ##### SRLinux
 
 Field           | Type       | Description
 --------------- | ---------- | -----------
-`operator`      | string     | Path of the yaml file to create an SRLinux operator in the cluster. The validated operator for use with KNE can be found [here](https://github.com/openconfig/kne/tree/main/manifests/controllers/srlinux/manifest.yaml).
+`operator`      | string     | Path of the yaml file to create an SRLinux operator in the cluster. The validated operator for use with KNE can be found [here](https://github.com/drivenets/kne/tree/main/manifests/controllers/srlinux/manifest.yaml).
 ~~`manifests`~~ | ~~string~~ | ~~Path of the directory holding the manifests to create an SRLinux operator in the cluster. The directory is expected to contain a file with the name `manifest.yaml`.~~
 
 ##### CEOSLab
 
 Field           | Type       | Description
 --------------- | ---------- | -----------
-`operator`      | string     | Path of the yaml file to create a CEOSLab operator in the cluster. The validated operator for use with KNE can be found [here](https://github.com/openconfig/kne/tree/main/manifests/controllers/ceoslab/manifest.yaml).
+`operator`      | string     | Path of the yaml file to create a CEOSLab operator in the cluster. The validated operator for use with KNE can be found [here](https://github.com/drivenets/kne/tree/main/manifests/controllers/ceoslab/manifest.yaml).
 ~~`manifests`~~ | ~~string~~ | ~~Path of the directory holding the manifests to create a CEOSLab operator in the cluster. The directory is expected to contain a file with the name `manifest.yaml`.~~
 
 ##### Lemming
 
 Field           | Type       | Description
 --------------- | ---------- | -----------
-`operator`      | string     | Path of the yaml file to create a Lemming operator in the cluster. The validated operator for use with KNE can be found [here](https://github.com/openconfig/kne/tree/main/manifests/controllers/lemming/manifest.yaml).
+`operator`      | string     | Path of the yaml file to create a Lemming operator in the cluster. The validated operator for use with KNE can be found [here](https://github.com/drivenets/kne/tree/main/manifests/controllers/lemming/manifest.yaml).
 ~~`manifests`~~ | ~~string~~ | ~~Path of the directory holding the manifests to create a Lemming operator in the cluster. The directory is expected to contain a file with the name `manifest.yaml`.~~
 
 </details>
@@ -154,7 +154,7 @@ Field           | Type       | Description
 ---
 
 The basic deployment yaml file can be found in the GitHub repo at
-[deploy/kne/kind-bridge.yaml](https://github.com/openconfig/kne/tree/main/deploy/kne/kind-bridge.yaml).
+[deploy/kne/kind-bridge.yaml](https://github.com/drivenets/kne/tree/main/deploy/kne/kind-bridge.yaml).
 
 This config specifies `kind` as the cluster, `metallb` as the ingress, and
 `meshnet` as the CNI. Additionally, the config instructs `kindnet` CNI to use
@@ -238,7 +238,7 @@ Container images can be hosted in multiple locations. For example
 [DockerHub](https://hub.docker.com/) hosts open sourced containers. [Google
 Artifact Registries](https://cloud.google.com/artifact-registry) can be used to
 host images with access control. The [KNE topology
-proto](https://github.com/openconfig/kne/blob/df91c62eb7e2a1abbf0a803f5151dc365b6f61da/proto/topo.proto#L117),
+proto](https://github.com/drivenets/kne/blob/df91c62eb7e2a1abbf0a803f5151dc365b6f61da/proto/topo.proto#L117),
 the manifests, and controllers can all specify containers that get pulled from
 their source locations and get used in the cluster.
 
@@ -298,15 +298,15 @@ Global Flags:
 ```
 
 A topology file is a textproto of the `Topology`
-[message](https://github.com/openconfig/kne/blob/df91c62eb7e2a1abbf0a803f5151dc365b6f61da/proto/topo.proto#L26).
+[message](https://github.com/drivenets/kne/blob/df91c62eb7e2a1abbf0a803f5151dc365b6f61da/proto/topo.proto#L26).
 This file specifies all of the nodes and links of your desired topology. In the
 node definitions interfaces, services, and initial configs can be specified.
 
 An example topology containing 4 DUT nodes (Arista, Cisco, Nokia, and Juniper)
 and 1 ATE node (Keysight) can be found under the examples directory at
-[examples/multivendor/multivendor.pb.txt](https://github.com/openconfig/kne/blob/main/examples/multivendor/multivendor.pb.txt).
+[examples/multivendor/multivendor.pb.txt](https://github.com/drivenets/kne/blob/main/examples/multivendor/multivendor.pb.txt).
 The initial vendor router configs referenced in the topology are found
-[here](https://github.com/openconfig/kne/tree/main/examples/multivendor)
+[here](https://github.com/drivenets/kne/tree/main/examples/multivendor)
 See the [push config](interact_topology.md#push_config) section for details
 about pushing config after initial creation.
 
