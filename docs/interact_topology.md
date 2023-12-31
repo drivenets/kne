@@ -61,10 +61,7 @@ $ ssh admin@192.168.11.50
 (admin@192.168.11.50) Password: <admin>
 ```
 
-<details>
-<summary>WARNING: You may need to configure your SSH config to allow SSHing without a proxy.</summary>
-
-1. Get the IP range used by KNE services:
+1.  Get the IP range used by KNE services:
 
     ```bash
     $ kubectl get services -n multivendor
@@ -84,7 +81,7 @@ $ ssh admin@192.168.11.50
 
     In this case the IP range would be `192.168.11.*`.
 
-1. Edit your SSH config found at `~/.ssh/config` to include:
+2.  Edit your SSH config found at `~/.ssh/config` to include:
 
     ```bash
     Host 192.168.11.*
@@ -92,8 +89,6 @@ $ ssh admin@192.168.11.50
         StrictHostKeyChecking no
         ProxyCommand none
     ```
-
-</details>
 
 ## gNMI
 
@@ -145,9 +140,6 @@ nodes: {
 
 This will configure the node to expose `gnmi` on port `9339` externally
 regardless of which port the gNMI server is running on inside the container.
-
-<details>
-<summary><h4>Arista</h4></summary>
 
 gNMI is enabled for Arista node `r1` in the multivendor node by default.
 Outlined below are the key pieces for configuring gNMI in general.
@@ -226,38 +218,18 @@ Authorization required: no
 Notification timestamp: last change time
 ```
 
-</details>
-
-<details>
-<summary><h4>Cisco</h4></summary>
-
 See the external 8000e with services
 [README](https://github.com/openconfig/kne/blob/main/examples/cisco/8000e/README.md).
-
-</details>
-
-<details>
-<summary><h4>Nokia</h4></summary>
 
 See the external SR Linux
 [guide](http://learn.srlinux.dev/tutorials/infrastructure/kne/srl-with-oc-services/).
 
-</details>
-
-<details>
-<summary><h4>Juniper</h4></summary>
-
 See the external cptx with services
 [README](https://github.com/openconfig/kne/blob/main/examples/juniper/cptx-ixia/README.md).
 
-</details>
-
-### Using OpenConfig g* services
+### Using OpenConfig g\* services
 
 #### Using the CLI
-
-<details>
-<summary><h5>gNMI</h5></summary>
 
 Install the `gNMIc` command line tool:
 
@@ -276,11 +248,6 @@ using `gnmic`:
 gnmic subscribe -a <external-ip>:9339 --path /components --skip-verify -u <username> -p <password> --format flat
 ```
 
-</details>
-
-<details>
-<summary><h5>gNOI</h5></summary>
-
 Install the `gNOIc` command line tool:
 
 ```bash
@@ -298,11 +265,6 @@ using `gnoic`:
 gnoic system time -a <external-ip>:9337 --skip-verify -u <username> -p <password>
 ```
 
-</details>
-
-<details>
-<summary><h5>gRIBI</h5></summary>
-
 Install the `gRIBIc` command line tool:
 
 ```bash
@@ -319,8 +281,6 @@ directly using `gribic`:
 ```bash
 gribic -a <external-ip>:9340 --skip-verify -u <username> -p <password> get -ns DEFAULT -aft ipv4
 ```
-
-</details>
 
 #### Using Golang
 
@@ -406,3 +366,4 @@ func TestTrivial(t *testing.T) {
     }
 }
 ```
+
