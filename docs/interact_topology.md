@@ -61,6 +61,9 @@ $ ssh admin@192.168.11.50
 (admin@192.168.11.50) Password: <admin>
 ```
 
+<details> 
+<summary>WARNING: You may need to configure your SSH config to allow SSHing without a proxy.</summary>
+
 1. Get the IP range used by KNE services:
 
     ```bash
