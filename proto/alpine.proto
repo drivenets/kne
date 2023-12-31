@@ -15,7 +15,7 @@ syntax = "proto3";
 
 package alpine;
 
-option go_package = "github.com/drivenets/kne/proto/alpine";
+option go_package = "github.com/openconfig/kne/proto/alpine";
 
 // Alpine specific vendor data for KNE
 message AlpineConfig {

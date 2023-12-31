@@ -19,7 +19,7 @@ import "topo.proto";
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/drivenets/kne/proto/event";
+option go_package = "github.com/openconfig/kne/proto/event";
 
 // KNEEvent is a wrapper around a specific event with a unique ID and timestamp.
 message KNEEvent {

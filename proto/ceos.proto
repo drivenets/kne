@@ -15,7 +15,7 @@ syntax = "proto3";
 
 package ceos;
 
-option go_package = "github.com/drivenets/kne/proto/ceos";
+option go_package = "github.com/openconfig/kne/proto/ceos";
 
 // cEOS-lab specific vendor data for KNE
 message CEosLabConfig {
