@@ -36,4 +36,4 @@ controllers:
       operator: ../../manifests/controllers/lemming/manifest.yaml
   - kind: Cdnos
     spec:
-      operator: ../../manifests/controllers/drivenets/manifest.yaml
+      operator: ../../manifests/controllers/cdnos/manifest.yaml

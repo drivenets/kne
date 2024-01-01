@@ -117,8 +117,15 @@ Field           | Type       | Description
 
 Field  | Type      | Description
 ------ | --------- | ----------------------------------------------------
-`kind` | string    | Name of the controller type. The current options currently are `IxiaTG`, `SRLinux`, `CEOSLab`, and `Lemming`.
+`kind` | string    | Name of the controller type. The current options currently are `Cdnos`, `IxiaTG`, `SRLinux`, `CEOSLab`, and `Lemming`.
 `spec` | yaml.Node | Fields that set the options for the controller type.
+
+##### Cdnos
+
+Field           | Type       | Description
+--------------- | ---------- | -----------
+`operator`      | string     | Path of the yaml file to create a Cdnos operator in the cluster. The validated operator for use with KNE can be found [here](https://github.com/openconfig/kne/tree/main/manifests/controllers/cdnos/manifest.yaml).
+~~`manifests`~~ | ~~string~~ | ~~Path of the directory holding the manifests to create a CEOSLab operator in the cluster. The directory is expected to contain a file with the name `manifest.yaml`.~~
 
 ##### IxiaTG
 
@@ -174,6 +181,7 @@ nodes. If you did not specify these in your deployment configuration, you will
 need to manually create them **before** deploying a topology. Currently the
 following vendors use a controller:
 
+- Drivenets: `Cdnos`
 - Keysight: `ixiatg`
 - Nokia: `srlinux`
 - Arista: `ceoslab`
@@ -181,6 +189,15 @@ following vendors use a controller:
 
 These controllers can be deployed as part of [cluster
 deployment](#deploy-a-cluster).
+
+### SR Linux Controller
+
+```bash
+kubectl apply -f manifests/controllers/drivenets/manifest.yaml
+```
+
+See more on the
+[cdnos-controller GitHub repo](https://github.com/drivenets/cdnos-controller).
 
 ### IxiaTG Controller
 
@@ -312,6 +329,7 @@ about pushing config after initial creation.
 
 Make sure to load all 4 vendor images into the cluster following the above guide:
 
+- `cdnos:latest`
 - `ceos:latest`
 - `cptx:latest`
 - `xrd:latest`
