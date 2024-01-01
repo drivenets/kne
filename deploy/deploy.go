@@ -1114,6 +1114,55 @@ func (c *CEOSLabSpec) Healthy(ctx context.Context) error {
 }
 
 func init() {
+	load.Register("Cdnos", &load.Spec{
+		Type: CdnosSpec{},
+		Tag:  "controllers",
+	})
+}
+
+type CdnosSpec struct {
+	ManifestDir  string `yaml:"manifests"`
+	Operator     string `yaml:"operator" kne:"yaml"`
+	OperatorData []byte
+	kClient      kubernetes.Interface
+}
+
+func (l *CdnosSpec) SetKClient(k kubernetes.Interface) {
+	l.kClient = k
+}
+
+func (l *CdnosSpec) Deploy(ctx context.Context) error {
+	if l.OperatorData != nil {
+		f, err := os.CreateTemp("", "cdnos-operator-*.yaml")
+		if err != nil {
+			return err
+		}
+		defer os.Remove(f.Name())
+		if _, err := f.Write(l.OperatorData); err != nil {
+			return err
+		}
+		if err := f.Close(); err != nil {
+			return err
+		}
+		l.Operator = f.Name()
+	}
+	if l.Operator == "" && l.ManifestDir != "" {
+		log.Errorf("Deploying Cdnos controller using the directory 'manifests' field (%v) is deprecated, instead provide the filepath of the operator file directly using the 'operator' field going forward", l.ManifestDir)
+		l.Operator = filepath.Join(l.ManifestDir, "manifest.yaml")
+	}
+	log.Infof("Deploying Cdnos controller from: %s", l.Operator)
+	if err := logCommand("kubectl", "apply", "-f", l.Operator); err != nil {
+		return fmt.Errorf("failed to deploy cdnos operator: %w", err)
+	}
+	log.Infof("Cdnos controller deployed")
+	return nil
+}
+
+func (l *CdnosSpec) Healthy(ctx context.Context) error {
+	return deploymentHealthy(ctx, l.kClient, "cdnos-operator")
+}
+
+func init() {
 	load.Register("Lemming", &load.Spec{
 		Type: LemmingSpec{},
 		Tag:  "controllers",
