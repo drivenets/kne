@@ -19,7 +19,7 @@ require (
 	github.com/openconfig/gnmi v0.10.0
 	github.com/openconfig/gnoigo v0.0.0-20231026010722-87413fdb22e7
 	github.com/openconfig/gribi v1.0.0
-	github.com/openconfig/kne v0.1.16
+	github.com/drivenets/kne v0.1.16
 	github.com/openconfig/lemming/operator v0.2.0
 	github.com/openconfig/ondatra v0.4.1
 	github.com/p4lang/p4runtime v1.3.0

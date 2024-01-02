@@ -17,9 +17,9 @@ import (
 	"context"
 	"fmt"
 
-	apb "github.com/openconfig/kne/proto/alpine"
-	tpb "github.com/openconfig/kne/proto/topo"
-	"github.com/openconfig/kne/topo/node"
+	apb "github.com/drivenets/kne/proto/alpine"
+	tpb "github.com/drivenets/kne/proto/topo"
+	"github.com/drivenets/kne/topo/node"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	log "k8s.io/klog/v2"

@@ -27,7 +27,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/openconfig/kne/exec"
+	"github.com/drivenets/kne/exec"
 )
 
 // A Response indicates how Command should respond to Run.

@@ -20,7 +20,7 @@ import (
 	"fmt"
 
 	"cloud.google.com/go/pubsub"
-	epb "github.com/openconfig/kne/proto/event"
+	epb "github.com/drivenets/kne/proto/event"
 	"github.com/pborman/uuid"
 	"google.golang.org/protobuf/proto"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"

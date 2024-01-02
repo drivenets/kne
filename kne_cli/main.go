@@ -24,7 +24,7 @@ import (
 	"strings"
 
 	"github.com/drivenets/kne/cmd"
-	"github.com/openconfig/kne/flags"
+	"github.com/drivenets/kne/flags"
 	"github.com/spf13/pflag"
 	"k8s.io/klog/v2"
 )

@@ -19,9 +19,9 @@ import (
 	"testing"
 	"time"
 
+	topopb "github.com/drivenets/kne/proto/topo"
+	"github.com/drivenets/kne/topo/node"
 	"github.com/h-fam/errdiff"
-	topopb "github.com/openconfig/kne/proto/topo"
-	"github.com/openconfig/kne/topo/node"
 	scrapliopts "github.com/scrapli/scrapligo/driver/options"
 	scraplilogging "github.com/scrapli/scrapligo/logging"
 	scraplitransport "github.com/scrapli/scrapligo/transport"

@@ -19,10 +19,10 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/drivenets/kne/cmd/deploy"
+	"github.com/drivenets/kne/cmd/topology"
+	"github.com/drivenets/kne/topo"
 	"github.com/kr/pretty"
-	"github.com/openconfig/kne/cmd/deploy"
-	"github.com/openconfig/kne/cmd/topology"
-	"github.com/openconfig/kne/topo"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"k8s.io/client-go/util/homedir"

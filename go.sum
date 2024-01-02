@@ -1121,8 +1121,8 @@ github.com/openconfig/gribi v1.0.0 h1:xMwEg0mBD+21mOxuFOw0d9dBKuIPwJEhMUUeUulZdL
 github.com/openconfig/gribi v1.0.0/go.mod h1:VFqGH2ZPFIfnKTimP4/AQB4OK0eySW5muJNFxXAwP6k=
 github.com/openconfig/grpctunnel v0.0.0-20220819142823-6f5422b8ca70 h1:t6SvvdfWCMlw0XPlsdxO8EgO+q/fXnTevDjdYREKFwU=
 github.com/openconfig/grpctunnel v0.0.0-20220819142823-6f5422b8ca70/go.mod h1:OmTWe7RyZj2CIzIgy4ovEBzCLBJzRvWSZmn7u02U9gU=
-github.com/openconfig/kne v0.1.16 h1:3bvkinEoT4xo0c5kcqnotdboq3ZfFHoVRP1YZja97W0=
-github.com/openconfig/kne v0.1.16/go.mod h1:WROHtukCSPVMFEE8dfIec9RneqLDNqaFf92wTAVuAvk=
+github.com/drivenets/kne v0.1.16 h1:3bvkinEoT4xo0c5kcqnotdboq3ZfFHoVRP1YZja97W0=
+github.com/drivenets/kne v0.1.16/go.mod h1:WROHtukCSPVMFEE8dfIec9RneqLDNqaFf92wTAVuAvk=
 github.com/openconfig/lemming/operator v0.2.0 h1:dovZnR6lQkOHXcODli1NDOr/GVYrBY05KS5X11jxVbw=
 github.com/openconfig/lemming/operator v0.2.0/go.mod h1:LKgEXSR5VK2CAeh2uKijKAXFj42uQuwakrCHVPF0iII=
 github.com/openconfig/ondatra v0.4.1 h1:xGjdCeYlfKuEOk4PaICXgoi5PDat17h5lqHSMu98gDU=
