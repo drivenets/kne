@@ -23,7 +23,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/openconfig/kne/cmd"
+	"github.com/drivenets/kne/cmd"
 	"github.com/openconfig/kne/flags"
 	"github.com/spf13/pflag"
 	"k8s.io/klog/v2"
