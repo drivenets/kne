@@ -26,7 +26,7 @@ import (
 	logshim "github.com/openconfig/kne/logshim"
 	"github.com/openconfig/kne/metrics"
 	"github.com/openconfig/kne/pods"
-	epb "github.com/openconfig/kne/proto/event"
+	epb "github.com/drivenets/kne/proto/event"
 	metallbv1 "go.universe.tf/metallb/api/v1beta1"
 	"golang.org/x/oauth2/google"
 	appsv1 "k8s.io/api/apps/v1"
@@ -218,6 +218,8 @@ func (d *Deployment) event() *epb.Cluster {
 			c.Controllers = append(c.Controllers, epb.Cluster_CONTROLLER_TYPE_SRLINUX)
 		case *LemmingSpec:
 			c.Controllers = append(c.Controllers, epb.Cluster_CONTROLLER_TYPE_LEMMING)
+		case *CdnosSpec:
+			c.Controllers = append(c.Controllers, epb.Cluster_CONTROLLER_TYPE_CDNOS)
 		}
 	}
 	return c

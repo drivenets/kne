@@ -185,6 +185,7 @@ const (
 	Cluster_CONTROLLER_TYPE_SRLINUX     Cluster_ControllerType = 2
 	Cluster_CONTROLLER_TYPE_CEOSLAB     Cluster_ControllerType = 3
 	Cluster_CONTROLLER_TYPE_LEMMING     Cluster_ControllerType = 4
+	Cluster_CONTROLLER_TYPE_CDNOS	    Cluster_ControllerType = 5
 )
 
 // Enum value maps for Cluster_ControllerType.
@@ -195,6 +196,7 @@ var (
 		2: "CONTROLLER_TYPE_SRLINUX",
 		3: "CONTROLLER_TYPE_CEOSLAB",
 		4: "CONTROLLER_TYPE_LEMMING",
+		5: "CONTROLLER_TYPE_CDNOS",
 	}
 	Cluster_ControllerType_value = map[string]int32{
 		"CONTROLLER_TYPE_UNSPECIFIED": 0,
@@ -202,6 +204,7 @@ var (
 		"CONTROLLER_TYPE_SRLINUX":     2,
 		"CONTROLLER_TYPE_CEOSLAB":     3,
 		"CONTROLLER_TYPE_LEMMING":     4,
+		"CONTROLLER_TYPE_CDNOS":       5,
 	}
 )
 
