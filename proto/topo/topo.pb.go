@@ -51,7 +51,8 @@ const (
 	Vendor_GOBGP      Vendor = 8
 	Vendor_NOKIA      Vendor = 9
 	Vendor_OPENCONFIG Vendor = 10
-	Vendor_DRIVENETS  Vendor = 11
+	Vendor_ALPINE     Vendor = 11
+	Vendor_DRIVENETS  Vendor = 12
 )
 
 // Enum value maps for Vendor.
@@ -68,7 +69,8 @@ var (
 		8:  "GOBGP",
 		9:  "NOKIA",
 		10: "OPENCONFIG",
-		11: "DRIVENETS",
+		11: "ALPINE",
+		12: "DRIVENETS",
 	}
 	Vendor_value = map[string]int32{
 		"UNKNOWN":    0,
@@ -82,6 +84,7 @@ var (
 		"GOBGP":      8,
 		"NOKIA":      9,
 		"OPENCONFIG": 10,
+		"ALPINE":     11,
 		"DRIVENETS":  11,
 	}
 )

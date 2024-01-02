@@ -29,7 +29,7 @@ import (
 	epb "github.com/drivenets/kne/proto/event"
 	tpb "github.com/drivenets/kne/proto/topo"
 	"github.com/drivenets/kne/topo/node"
-	"github.com/drivenets/knei/errlist"
+	"github.com/openconfig/gnmi/errlist"
 	"github.com/ghodss/yaml"
 	"github.com/kr/pretty"
 	topologyclientv1 "github.com/networkop/meshnet-cni/api/clientset/v1beta1"
@@ -55,7 +55,7 @@ import (
 	_ "github.com/drivenets/kne/topo/node/keysight"
 	_ "github.com/drivenets/kne/topo/node/nokia"
 	_ "github.com/drivenets/kne/topo/node/openconfig"
-	_ "github.com/drivenets/knepo/node/drivenets"
+	_ "github.com/drivenets/kne/topo/node/drivenets"
 )
 
 var protojsonUnmarshaller = protojson.UnmarshalOptions{
