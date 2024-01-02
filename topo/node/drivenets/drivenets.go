@@ -28,7 +28,7 @@ import (
 
 	cdnosv1 "github.com/drivenets/cdnos-controller/api/v1"
 	"github.com/drivenets/cdnos-controller/api/v1/clientset"
-	tpb "github.com/openconfig/kne/proto/topo"
+	tpb "github.com/drivenets/kne/proto/topo"
 	"github.com/openconfig/kne/topo/node"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
