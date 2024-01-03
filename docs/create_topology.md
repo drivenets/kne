@@ -190,10 +190,10 @@ following vendors use a controller:
 These controllers can be deployed as part of [cluster
 deployment](#deploy-a-cluster).
 
-### SR Linux Controller
+### Cdnos Controller
 
 ```bash
-kubectl apply -f manifests/controllers/drivenets/manifest.yaml
+kubectl apply -f manifests/controllers/cdnos/manifest.yaml
 ```
 
 See more on the
