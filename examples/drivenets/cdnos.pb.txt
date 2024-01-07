@@ -6,7 +6,7 @@ nodes: {
         config_file: "default"
         config_path: "/config_load"
         file: "cdnos1.cfg"
-        image: "registry.dev.drivenets.net/devops/cdnos_pr_62066:19.1.0.1_priv.62066.88c3b4104300e8a701b34b10b72a09b878dea685"
+        image: "registry.dev.drivenets.net/devops/cdnos_pr_61596:19.1.0.1_priv.61596.59ad5662f25a3760114008c0e51c2ef1b583ae7e"
     }
     model: "CDNOS"
 }
@@ -17,7 +17,7 @@ nodes: {
         config_file: "default"
         config_path: "/config_load"
         file: "cdnos2.cfg"
-        image: "registry.dev.drivenets.net/devops/cdnos_pr_62066:19.1.0.1_priv.62066.88c3b4104300e8a701b34b10b72a09b878dea685"
+        image: "registry.dev.drivenets.net/devops/cdnos_pr_61596:19.1.0.1_priv.61596.59ad5662f25a3760114008c0e51c2ef1b583ae7e"
     }
     model: "CDNOS"
 }
