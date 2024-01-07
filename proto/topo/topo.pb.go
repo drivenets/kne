@@ -85,7 +85,7 @@ var (
 		"NOKIA":      9,
 		"OPENCONFIG": 10,
 		"ALPINE":     11,
-		"DRIVENETS":  11,
+		"DRIVENETS":  12,
 	}
 )
 

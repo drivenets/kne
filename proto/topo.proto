@@ -41,7 +41,8 @@ enum Vendor {
   GOBGP = 8;
   NOKIA = 9;
   OPENCONFIG = 10;
-  DRIVENETS = 11;
+  ALPINE = 11;
+  DRIVENETS = 12;
 }
 
 // Node is a single container inside the topology

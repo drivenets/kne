@@ -1,5 +1,16 @@
 name: "multivendor"
 nodes: {
+    name: "cdnos"
+    vendor: DRIVENETS
+    model: "CDNOS"
+    config: {
+        config_path: "/config_load"
+        config_file: "default"
+        file: "cdnos.cfg"
+        image: "registry.dev.drivenets.net/devops/cdnos_pr_61596:19.1.0.1_priv.61596.59ad5662f25a3760114008c0e51c2ef1b583ae7e"
+    }
+}
+nodes: {
   name: "ceos"
   vendor: ARISTA
   model: "ceos"
@@ -254,4 +265,11 @@ links: {
   a_int: "eth9"
   z_node: "cptx"
   z_int: "eth13"
+}
+# srl - cdnos
+links: {
+    a_node: "srl"
+    a_int: "eth10"
+    z_node: "cdnos"
+    z_int: "eno0"
 }

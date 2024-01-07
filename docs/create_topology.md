@@ -327,7 +327,7 @@ The initial vendor router configs referenced in the topology are found
 See the [push config](interact_topology.md#push_config) section for details
 about pushing config after initial creation.
 
-Make sure to load all 4 vendor images into the cluster following the above guide:
+Make sure to load all 5 vendor images into the cluster following the above guide:
 
 - `cdnos:latest`
 - `ceos:latest`
