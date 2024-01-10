@@ -190,15 +190,6 @@ following vendors use a controller:
 These controllers can be deployed as part of [cluster
 deployment](#deploy-a-cluster).
 
-### Cdnos Controller
-
-```bash
-kubectl apply -f manifests/controllers/cdnos/manifest.yaml
-```
-
-See more on the
-[cdnos-controller GitHub repo](https://github.com/drivenets/cdnos-controller).
-
 ### IxiaTG Controller
 
 `ixiatg` controller orchestrates the lifecycle of the [Ixia-c](https://ixia-c.dev) test nodes that add [Open Traffic Generator](https://otg.dev) capabilities to the KNE topology. To deploy:
@@ -240,6 +231,15 @@ kubectl apply -f manifests/controllers/ceoslab/manifest.yaml
 
 See more on the
 [arista-ceoslab-operator GitHub repo](https://github.com/aristanetworks/arista-ceoslab-operator).
+
+### Cdnos Controller
+
+```bash
+kubectl apply -f manifests/controllers/cdnos/manifest.yaml
+```
+
+See more on the
+[cdnos-controller GitHub repo](https://github.com/drivenets/cdnos-controller).
 
 #### lemming
 
@@ -329,7 +329,6 @@ about pushing config after initial creation.
 
 Make sure to load all 5 vendor images into the cluster following the above guide:
 
-- `cdnos:latest`
 - `ceos:latest`
 - `cptx:latest`
 - `xrd:latest`
