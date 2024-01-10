@@ -181,10 +181,10 @@ nodes. If you did not specify these in your deployment configuration, you will
 need to manually create them **before** deploying a topology. Currently the
 following vendors use a controller:
 
-- Drivenets: `Cdnos`
 - Keysight: `ixiatg`
 - Nokia: `srlinux`
 - Arista: `ceoslab`
+- Drivenets: `cdnos`
 - OpenConfig: `lemming`
 
 These controllers can be deployed as part of [cluster
