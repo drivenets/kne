@@ -140,6 +140,7 @@ func (n *Node) cdnosCreate(ctx context.Context) error {
 			InterfaceCount: len(nodeSpec.Interfaces) + 1,
 			InitSleep:      int(config.Sleep),
 			Resources:      node.ToResourceRequirements(nodeSpec.Constraints),
+			Labels: nodeSpec.Labels,
 		},
 	}
 	if config.Cert != nil {
