@@ -4,8 +4,8 @@ import (
 	"testing"
 
 	"github.com/h-fam/errdiff"
-	tpb "github.com/openconfig/kne/proto/topo"
-	"github.com/openconfig/kne/topo/node"
+	tpb "github.com/drivenets/kne/proto/topo"
+	"github.com/drivenets/kne/topo/node"
 	"google.golang.org/protobuf/encoding/prototext"
 	"google.golang.org/protobuf/proto"
 )

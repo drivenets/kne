@@ -39,7 +39,7 @@ available resources on each. This setup can easily be scaled up by adding more
 worker VMs with increased resources (CPU, etc.).
 
 To conclude this guide we will bring up a
-[150 node topology](https://github.com/openconfig/kne/blob/main/examples/arista/ceos-150/ceos-150.pb.txt)
+[150 node topology](https://github.com/drivenets/kne/blob/main/examples/arista/ceos-150/ceos-150.pb.txt)
 in our multi-node cluster.
 
 ## Create a topology in a multi-node cluster
@@ -276,7 +276,7 @@ assignments should resolve themselves.
 
 If you see some services with a `<pending>` EXTERNAL-IP, then your MetalLB
 configuration does not have enough IPs to assign. This codelab uses a
-[configuration](https://github.com/openconfig/kne/blob/main/deploy/kne/external-multinode.yaml)
+[configuration](https://github.com/drivenets/kne/blob/main/deploy/kne/external-multinode.yaml)
 with a pool of 200 unique external IP addresses. If your topology has more than
 200 nodes then this issue will be seen. Increase the value to accommodate your
 number of nodes, and redeploy.

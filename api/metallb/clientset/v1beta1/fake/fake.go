@@ -14,7 +14,7 @@
 package fake
 
 import (
-	metallbv1client "github.com/openconfig/kne/api/metallb/clientset/v1beta1"
+	metallbv1client "github.com/drivenets/kne/api/metallb/clientset/v1beta1"
 	"k8s.io/apimachinery/pkg/runtime"
 	dfake "k8s.io/client-go/dynamic/fake"
 	"k8s.io/client-go/rest"

@@ -22,7 +22,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/h-fam/errdiff"
-	"github.com/openconfig/kne/topo/node"
+	"github.com/drivenets/kne/topo/node"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/testing/protocmp"
@@ -31,7 +31,7 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	tpb "github.com/openconfig/kne/proto/topo"
+	tpb "github.com/drivenets/kne/proto/topo"
 	scrapliopts "github.com/scrapli/scrapligo/driver/options"
 	scraplitransport "github.com/scrapli/scrapligo/transport"
 	scrapliutil "github.com/scrapli/scrapligo/util"

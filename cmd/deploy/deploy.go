@@ -17,8 +17,8 @@ import (
 	"fmt"
 	"os/exec"
 
-	"github.com/openconfig/kne/deploy"
-	"github.com/openconfig/kne/load"
+	"github.com/drivenets/kne/deploy"
+	"github.com/drivenets/kne/load"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"gopkg.in/yaml.v3"
