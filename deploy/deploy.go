@@ -1192,7 +1192,7 @@ func (l *CdnosSpec) Deploy(ctx context.Context) error {
 		l.Operator = filepath.Join(l.ManifestDir, "manifest.yaml")
 	}
 	log.Infof("Deploying Cdnos controller from: %s", l.Operator)
-	if err := logCommand("kubectl", "apply", "-f", l.Operator); err != nil {
+	if err := run.LogCommand("kubectl", "apply", "-f", l.Operator); err != nil {
 		return fmt.Errorf("failed to deploy cdnos operator: %w", err)
 	}
 	log.Infof("Cdnos controller deployed")
