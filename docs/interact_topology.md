@@ -10,7 +10,7 @@ the [Create Topology How-To](create_topology.md#create-a-topology).
 
 The `kne topology push` command can be used to push configuration to a node in a
 topology. If a config file was specified in the
-[topology textproto](https://github.com/openconfig/kne/blob/main/examples/multivendor/multivendor.pb.txt#L10),
+[topology textproto](https://github.com/drivenets/kne/blob/main/examples/multivendor/multivendor.pb.txt#L10),
 then an initial config will be pushed during topology creation and a manual push
 is not required unless a config change is desired. For example:
 
@@ -232,7 +232,7 @@ Notification timestamp: last change time
 <summary><h4>Cisco</h4></summary>
 
 See the external 8000e with services
-[README](https://github.com/openconfig/kne/blob/main/examples/cisco/8000e/README.md).
+[README](https://github.com/drivenets/kne/blob/main/examples/cisco/8000e/README.md).
 
 </details>
 
@@ -248,7 +248,7 @@ See the external SR Linux
 <summary><h4>Juniper</h4></summary>
 
 See the external cptx with services
-[README](https://github.com/openconfig/kne/blob/main/examples/juniper/cptx-ixia/README.md).
+[README](https://github.com/drivenets/kne/blob/main/examples/juniper/cptx-ixia/README.md).
 
 </details>
 
