@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"io"
 
-	kexec "github.com/openconfig/kne/exec"
-	"github.com/openconfig/kne/logshim"
+	kexec "github.com/drivenets/kne/exec"
+	"github.com/drivenets/kne/logshim"
 	log "k8s.io/klog/v2"
 )
 

@@ -17,14 +17,14 @@ import (
 	dtypes "github.com/docker/docker/api/types"
 	dclient "github.com/docker/docker/client"
 	"github.com/openconfig/gnmi/errlist"
-	metallbclientv1 "github.com/openconfig/kne/api/metallb/clientset/v1beta1"
-	"github.com/openconfig/kne/cluster/kind"
-	"github.com/openconfig/kne/events"
-	"github.com/openconfig/kne/exec/run"
-	"github.com/openconfig/kne/load"
-	"github.com/openconfig/kne/metrics"
-	"github.com/openconfig/kne/pods"
-	epb "github.com/openconfig/kne/proto/event"
+	metallbclientv1 "github.com/drivenets/kne/api/metallb/clientset/v1beta1"
+	"github.com/drivenets/kne/cluster/kind"
+	"github.com/drivenets/kne/events"
+	"github.com/drivenets/kne/exec/run"
+	"github.com/drivenets/kne/load"
+	"github.com/drivenets/kne/metrics"
+	"github.com/drivenets/kne/pods"
+	epb "github.com/drivenets/kne/proto/event"
 	metallbv1 "go.universe.tf/metallb/api/v1beta1"
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
@@ -1188,7 +1188,7 @@ func (c *CdnosSpec) Deploy(ctx context.Context) error {
 		c.Operator = f.Name()
 	}
 	if c.Operator == "" && c.ManifestDir != "" {
-		log.Errorf("Deploying Cdnos controller using the directory 'manifests' field (%v) is deprecated, instead provide the filepath of the operator file directly using the 'operator' field going forward", l.ManifestDir)
+		log.Errorf("Deploying Cdnos controller using the directory 'manifests' field (%v) is deprecated, instead provide the filepath of the operator file directly using the 'operator' field going forward", c.ManifestDir)
 		c.Operator = filepath.Join(c.ManifestDir, "manifest.yaml")
 	}
 	log.Infof("Deploying Cdnos controller from: %s", c.Operator)

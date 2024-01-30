@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"testing"
 
+	kexec "github.com/drivenets/kne/exec"
+	fexec "github.com/drivenets/kne/exec/fake"
 	"github.com/openconfig/gnmi/errdiff"
-	kexec "github.com/openconfig/kne/exec"
-	fexec "github.com/openconfig/kne/exec/fake"
 )
 
 func TestRunCommand(t *testing.T) {
