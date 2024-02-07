@@ -1,4 +1,4 @@
-module github.com/openconfig/kne
+module github.com/drivenets/kne
 
 go 1.21
 

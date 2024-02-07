@@ -7,8 +7,8 @@ import (
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/openconfig/gnmi/errdiff"
-	"github.com/openconfig/kne/deploy"
-	cpb "github.com/openconfig/kne/proto/controller"
+	"github.com/drivenets/kne/deploy"
+	cpb "github.com/drivenets/kne/proto/controller"
 )
 
 func TestNewDeployment(t *testing.T) {

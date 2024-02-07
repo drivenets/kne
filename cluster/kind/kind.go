@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/openconfig/kne/exec/run"
+	"github.com/drivenets/kne/exec/run"
 	"golang.org/x/oauth2/google"
 	log "k8s.io/klog/v2"
 )

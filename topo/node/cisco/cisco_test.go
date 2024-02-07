@@ -22,8 +22,8 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/openconfig/gnmi/errdiff"
-	tpb "github.com/openconfig/kne/proto/topo"
-	"github.com/openconfig/kne/topo/node"
+	tpb "github.com/drivenets/kne/proto/topo"
+	"github.com/drivenets/kne/topo/node"
 	scrapliopts "github.com/scrapli/scrapligo/driver/options"
 	scraplitransport "github.com/scrapli/scrapligo/transport"
 	scrapliutil "github.com/scrapli/scrapligo/util"

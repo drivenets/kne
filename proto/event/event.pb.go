@@ -21,7 +21,7 @@
 package event
 
 import (
-	topo "github.com/openconfig/kne/proto/topo"
+	topo "github.com/drivenets/kne/proto/topo"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"

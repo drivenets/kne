@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	"github.com/openconfig/gnmi/errdiff"
-	kexec "github.com/openconfig/kne/exec"
-	fexec "github.com/openconfig/kne/exec/fake"
+	kexec "github.com/drivenets/kne/exec"
+	fexec "github.com/drivenets/kne/exec/fake"
 )
 
 func TestRunCommand(t *testing.T) {
