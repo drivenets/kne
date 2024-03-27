@@ -5,11 +5,11 @@ import (
 	"strings"
 	"testing"
 
+	cmddeploy "github.com/drivenets/kne/cmd/deploy"
+	"github.com/drivenets/kne/deploy"
+	"github.com/drivenets/kne/load"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	cmddeploy "github.com/openconfig/kne/cmd/deploy"
-	"github.com/openconfig/kne/deploy"
-	"github.com/openconfig/kne/load"
 )
 
 func TestNewConfig(t *testing.T) {

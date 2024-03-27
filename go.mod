@@ -19,7 +19,6 @@ require (
 	github.com/openconfig/gnmi v0.10.0
 	github.com/openconfig/gnoigo v0.0.0-20231026010722-87413fdb22e7
 	github.com/openconfig/gribi v1.0.0
-	github.com/openconfig/kne v0.1.16
 	github.com/openconfig/lemming/operator v0.2.0
 	github.com/openconfig/ondatra v0.4.1
 	github.com/p4lang/p4runtime v1.3.0
@@ -99,10 +98,12 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
+	github.com/open-traffic-generator/ixia-c-operator v0.3.4 // indirect
 	github.com/openconfig/gnoi v0.2.0 // indirect
 	github.com/openconfig/gnsi v1.2.3 // indirect
 	github.com/openconfig/gocloser v0.0.0-20220310182203-c6c950ed3b0b // indirect
 	github.com/openconfig/goyang v1.4.3 // indirect
+	github.com/openconfig/kne v0.1.14 // indirect
 	github.com/openconfig/ygnmi v0.9.0 // indirect
 	github.com/openconfig/ygot v0.29.13 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect

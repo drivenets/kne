@@ -28,8 +28,8 @@ import (
 
 	cdnosv1 "github.com/drivenets/cdnos-controller/api/v1"
 	"github.com/drivenets/cdnos-controller/api/v1/clientset"
-	tpb "github.com/openconfig/kne/proto/topo"
-	"github.com/openconfig/kne/topo/node"
+	tpb "github.com/drivenets/kne/proto/topo"
+	"github.com/drivenets/kne/topo/node"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	corev1 "k8s.io/api/core/v1"
@@ -140,6 +140,7 @@ func (n *Node) cdnosCreate(ctx context.Context) error {
 			InterfaceCount: len(nodeSpec.Interfaces) + 1,
 			InitSleep:      int(config.Sleep),
 			Resources:      node.ToResourceRequirements(nodeSpec.Constraints),
+			Labels: nodeSpec.Labels,
 		},
 	}
 	if config.Cert != nil {

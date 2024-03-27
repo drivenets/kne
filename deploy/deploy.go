@@ -18,15 +18,15 @@ import (
 
 	dtypes "github.com/docker/docker/api/types"
 	dclient "github.com/docker/docker/client"
+	metallbclientv1 "github.com/drivenets/kne/api/metallb/clientset/v1beta1"
+	"github.com/drivenets/kne/events"
+	kexec "github.com/drivenets/kne/exec"
+	"github.com/drivenets/kne/load"
+	logshim "github.com/drivenets/kne/logshim"
+	"github.com/drivenets/kne/metrics"
+	"github.com/drivenets/kne/pods"
+	epb "github.com/drivenets/kne/proto/event"
 	"github.com/openconfig/gnmi/errlist"
-	metallbclientv1 "github.com/openconfig/kne/api/metallb/clientset/v1beta1"
-	"github.com/openconfig/kne/events"
-	kexec "github.com/openconfig/kne/exec"
-	"github.com/openconfig/kne/load"
-	logshim "github.com/openconfig/kne/logshim"
-	"github.com/openconfig/kne/metrics"
-	"github.com/openconfig/kne/pods"
-	epb "github.com/openconfig/kne/proto/event"
 	metallbv1 "go.universe.tf/metallb/api/v1beta1"
 	"golang.org/x/oauth2/google"
 	appsv1 "k8s.io/api/apps/v1"
@@ -218,6 +218,8 @@ func (d *Deployment) event() *epb.Cluster {
 			c.Controllers = append(c.Controllers, epb.Cluster_CONTROLLER_TYPE_SRLINUX)
 		case *LemmingSpec:
 			c.Controllers = append(c.Controllers, epb.Cluster_CONTROLLER_TYPE_LEMMING)
+		case *CdnosSpec:
+			c.Controllers = append(c.Controllers, epb.Cluster_CONTROLLER_TYPE_CDNOS)
 		}
 	}
 	return c
@@ -1295,6 +1297,57 @@ func (i *IxiaTGSpec) Deploy(ctx context.Context) error {
 func (i *IxiaTGSpec) Healthy(ctx context.Context) error {
 	return deploymentHealthy(ctx, i.kClient, "ixiatg-op-system")
 }
+
+
+func init() {
+	load.Register("Cdnos", &load.Spec{
+		Type: CdnosSpec{},
+		Tag:  "controllers",
+	})
+}
+
+type CdnosSpec struct {
+	ManifestDir  string `yaml:"manifests"`
+	Operator     string `yaml:"operator" kne:"yaml"`
+	OperatorData []byte
+	kClient      kubernetes.Interface
+}
+
+func (l *CdnosSpec) SetKClient(k kubernetes.Interface) {
+	l.kClient = k
+}
+
+func (l *CdnosSpec) Deploy(ctx context.Context) error {
+	if l.OperatorData != nil {
+		f, err := os.CreateTemp("", "cdnos-operator-*.yaml")
+		if err != nil {
+			return err
+		}
+		defer os.Remove(f.Name())
+		if _, err := f.Write(l.OperatorData); err != nil {
+			return err
+		}
+		if err := f.Close(); err != nil {
+			return err
+		}
+		l.Operator = f.Name()
+	}
+	if l.Operator == "" && l.ManifestDir != "" {
+		log.Errorf("Deploying Cdnos controller using the directory 'manifests' field (%v) is deprecated, instead provide the filepath of the operator file directly using the 'operator' field going forward", l.ManifestDir)
+		l.Operator = filepath.Join(l.ManifestDir, "manifest.yaml")
+	}
+	log.Infof("Deploying Cdnos controller from: %s", l.Operator)
+	if err := logCommand("kubectl", "apply", "-f", l.Operator); err != nil {
+		return fmt.Errorf("failed to deploy cdnos operator: %w", err)
+	}
+	log.Infof("Cdnos controller deployed")
+	return nil
+}
+
+func (l *CdnosSpec) Healthy(ctx context.Context) error {
+	return deploymentHealthy(ctx, l.kClient, "cdnos-controller-system")
+}
+
 
 func deploymentHealthy(ctx context.Context, c kubernetes.Interface, name string) error {
 	log.Infof("Waiting on deployment %q to be healthy", name)

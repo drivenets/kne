@@ -15,7 +15,7 @@ import (
 	kfake "k8s.io/client-go/kubernetes/fake"
 	"k8s.io/client-go/rest"
 
-	topopb "github.com/openconfig/kne/proto/topo"
+	topopb "github.com/drivenets/kne/proto/topo"
 )
 
 func NewNR(impl *Impl) (Node, error) {

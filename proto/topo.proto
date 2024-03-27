@@ -17,7 +17,7 @@ package topo;
 
 import "google/protobuf/any.proto";
 
-option go_package = "github.com/openconfig/kne/proto/topo";
+option go_package = "github.com/drivenets/kne/proto/topo";
 
 // Topology message defines what nodes and links will be created
 // inside the mesh.
@@ -41,7 +41,8 @@ enum Vendor {
   GOBGP = 8;
   NOKIA = 9;
   OPENCONFIG = 10;
-  DRIVENETS = 11;
+  ALPINE = 11;
+  DRIVENETS = 12;
 }
 
 // Node is a single container inside the topology

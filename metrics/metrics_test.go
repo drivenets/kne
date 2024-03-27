@@ -21,7 +21,7 @@ import (
 
 	"cloud.google.com/go/pubsub"
 	"cloud.google.com/go/pubsub/pstest"
-	epb "github.com/openconfig/kne/proto/event"
+	epb "github.com/drivenets/kne/proto/event"
 	"google.golang.org/api/option"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/proto"
