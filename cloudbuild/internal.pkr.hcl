@@ -129,7 +129,7 @@ build {
     inline = [
       "echo Cloning openconfig/kne github repo...",
       "sudo apt-get install git -y",
-      "git clone -b ${var.branch_name} https://github.com/openconfig/kne.git",
+      "git clone -b ${var.branch_name} https://github.com/drivenets/kne.git",
       "cd kne/kne_cli",
       "/usr/local/go/bin/go build -o kne",
       "sudo cp kne /usr/local/bin/",

@@ -19,10 +19,10 @@ import (
 	"fmt"
 	"testing"
 
+	tpb "github.com/drivenets/kne/proto/topo"
+	"github.com/drivenets/kne/topo/node"
 	"github.com/google/go-cmp/cmp"
 	"github.com/openconfig/gnmi/errdiff"
-	tpb "github.com/openconfig/kne/proto/topo"
-	"github.com/openconfig/kne/topo/node"
 	"github.com/openconfig/lemming/operator/api/clientset"
 	"github.com/openconfig/lemming/operator/api/clientset/fake"
 	lemmingv1 "github.com/openconfig/lemming/operator/api/lemming/v1alpha1"

@@ -3,9 +3,9 @@ package drivenets
 import (
 	"testing"
 
+	tpb "github.com/drivenets/kne/proto/topo"
+	"github.com/drivenets/kne/topo/node"
 	"github.com/openconfig/gnmi/errdiff"
-	tpb "github.com/openconfig/kne/proto/topo"
-	"github.com/openconfig/kne/topo/node"
 )
 
 func TestNew(t *testing.T) {

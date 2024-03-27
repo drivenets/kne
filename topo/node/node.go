@@ -12,9 +12,9 @@ import (
 	"sync"
 	"time"
 
+	tpb "github.com/drivenets/kne/proto/topo"
 	topologyv1 "github.com/networkop/meshnet-cni/api/types/v1beta1"
 	"github.com/openconfig/gnmi/errlist"
-	tpb "github.com/openconfig/kne/proto/topo"
 	scraplinetwork "github.com/scrapli/scrapligo/driver/network"
 	scrapliopts "github.com/scrapli/scrapligo/driver/options"
 	scraplilogging "github.com/scrapli/scrapligo/logging"

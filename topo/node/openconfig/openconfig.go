@@ -22,8 +22,8 @@ import (
 	"fmt"
 	"io"
 
-	tpb "github.com/openconfig/kne/proto/topo"
-	"github.com/openconfig/kne/topo/node"
+	tpb "github.com/drivenets/kne/proto/topo"
+	"github.com/drivenets/kne/topo/node"
 	"github.com/openconfig/lemming/operator/api/clientset"
 	lemmingv1 "github.com/openconfig/lemming/operator/api/lemming/v1alpha1"
 	"google.golang.org/grpc/codes"

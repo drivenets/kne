@@ -6,10 +6,10 @@ import (
 	"path/filepath"
 	"testing"
 
+	topopb "github.com/drivenets/kne/proto/topo"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/openconfig/gnmi/errdiff"
-	topopb "github.com/openconfig/kne/proto/topo"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/intstr"

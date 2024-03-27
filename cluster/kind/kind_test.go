@@ -5,11 +5,11 @@ import (
 	"errors"
 	"testing"
 
+	kexec "github.com/drivenets/kne/exec"
+	fexec "github.com/drivenets/kne/exec/fake"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/openconfig/gnmi/errdiff"
-	kexec "github.com/openconfig/kne/exec"
-	fexec "github.com/openconfig/kne/exec/fake"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 )

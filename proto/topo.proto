@@ -17,7 +17,7 @@ package topo;
 
 import "google/protobuf/any.proto";
 
-option go_package = "github.com/openconfig/kne/proto/topo";
+option go_package = "github.com/drivenets/kne/proto/topo";
 
 // Topology message defines what nodes and links will be created
 // inside the mesh.
