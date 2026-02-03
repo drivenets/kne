@@ -2,6 +2,7 @@ package node
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"math"
@@ -229,6 +230,57 @@ func ToResourceRequirements(kv map[string]string) corev1.ResourceRequirements {
 	return r
 }
 
+// ApplySchedulingConstraints applies node selection and toleration settings parsed
+// from the provided constraints map to the given Pod.
+// Supported encodings:
+// - Node selector via key prefix "nodeSelector.<labelKey>" => "<value>"
+// - Node selector via key "nodeSelector" => "key1=val1,key2=val2"
+// - Tolerations via key "tolerations" containing a JSON array of corev1.Toleration
+func ApplySchedulingConstraints(pod *corev1.Pod, constraints map[string]string) {
+	if pod == nil || constraints == nil {
+		return
+	}
+	// nodeSelector.<key>: value
+	for k, v := range constraints {
+		if strings.HasPrefix(k, "nodeSelector.") {
+			if pod.Spec.NodeSelector == nil {
+				pod.Spec.NodeSelector = map[string]string{}
+			}
+			labelKey := strings.TrimPrefix(k, "nodeSelector.")
+			if labelKey != "" {
+				pod.Spec.NodeSelector[labelKey] = v
+			}
+		}
+	}
+	// nodeSelector: "k1=v1,k2=v2"
+	if raw := constraints["nodeSelector"]; raw != "" {
+		pairs := strings.Split(raw, ",")
+		for _, p := range pairs {
+			p = strings.TrimSpace(p)
+			if p == "" {
+				continue
+			}
+			kv := strings.SplitN(p, "=", 2)
+			if len(kv) != 2 {
+				continue
+			}
+			if pod.Spec.NodeSelector == nil {
+				pod.Spec.NodeSelector = map[string]string{}
+			}
+			pod.Spec.NodeSelector[strings.TrimSpace(kv[0])] = strings.TrimSpace(kv[1])
+		}
+	}
+	// tolerations: JSON array of corev1.Toleration
+	if raw := constraints["tolerations"]; raw != "" {
+		var tol []corev1.Toleration
+		if err := json.Unmarshal([]byte(raw), &tol); err != nil {
+			log.Warningf("failed to parse tolerations from constraints: %v", err)
+		} else if len(tol) > 0 {
+			pod.Spec.Tolerations = append(pod.Spec.Tolerations, tol...)
+		}
+	}
+}
+
 // Create will create the node in the k8s cluster with all services and config
 // maps.
 func (n *Impl) Create(ctx context.Context) error {
@@ -453,6 +505,8 @@ func (n *Impl) CreatePod(ctx context.Context) error {
 			},
 		},
 	}
+	// Apply scheduling-related constraints (nodeSelector/tolerations) if provided.
+	ApplySchedulingConstraints(pod, pb.Constraints)
 	for label, v := range n.GetProto().GetLabels() {
 		pod.ObjectMeta.Labels[label] = v
 	}

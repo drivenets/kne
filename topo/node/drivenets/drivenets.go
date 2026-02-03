@@ -25,6 +25,7 @@ import (
 	"math"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/drivenets/cdnos-controller/api/v1/clientset"
 	"github.com/openconfig/kne/topo/node"
@@ -32,6 +33,8 @@ import (
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
 	"k8s.io/client-go/rest"
+
+	"time"
 
 	cdnosv1 "github.com/drivenets/cdnos-controller/api/v1"
 	corev1 "k8s.io/api/core/v1"
@@ -41,11 +44,61 @@ import (
 	tpb "github.com/openconfig/kne/proto/topo"
 )
 
-const (
-	// modelCdnos is a string used in the topology to specify that a cdnos
-	// device instance should be created.
-	modelCdnos string = "CDNOS"
+var (
+	// modelCdnos is a list of model names that should be treated as cdnos devices.
+	// Accept both CDNOS and MCDNOS (case-insensitive).
+	modelCdnos = []string{"CDNOS", "MCDNOS"}
 )
+
+// isModelCdnos returns true if the provided model is one of the supported
+// cdnos-family models (cdnos or mcdnos), case-insensitive.
+func isModelCdnos(model string) bool {
+	upper := strings.ToUpper(model)
+	for _, m := range modelCdnos {
+		if upper == m {
+			return true
+		}
+	}
+	return false
+}
+
+// extractNodeSelector extracts nodeSelector from constraints map.
+// Supports two formats:
+// - Node selector via key prefix "nodeSelector.<labelKey>" => "<value>"
+// - Node selector via key "nodeSelector" => "key1=val1,key2=val2"
+func extractNodeSelector(constraints map[string]string) map[string]string {
+	if constraints == nil {
+		return nil
+	}
+	nodeSelector := make(map[string]string)
+	// nodeSelector.<key>: value
+	for k, v := range constraints {
+		if strings.HasPrefix(k, "nodeSelector.") {
+			labelKey := strings.TrimPrefix(k, "nodeSelector.")
+			if labelKey != "" {
+				nodeSelector[labelKey] = v
+			}
+		}
+	}
+	// nodeSelector: "k1=v1,k2=val2"
+	if raw := constraints["nodeSelector"]; raw != "" {
+		pairs := strings.Split(raw, ",")
+		for _, p := range pairs {
+			p = strings.TrimSpace(p)
+			if p == "" {
+				continue
+			}
+			kv := strings.SplitN(p, "=", 2)
+			if len(kv) == 2 {
+				nodeSelector[strings.TrimSpace(kv[0])] = strings.TrimSpace(kv[1])
+			}
+		}
+	}
+	if len(nodeSelector) == 0 {
+		return nil
+	}
+	return nodeSelector
+}
 
 var (
 	defaultConstraints = node.Constraints{
@@ -94,7 +147,7 @@ func New(nodeImpl *node.Impl) (node.Node, error) {
 		return nil, fmt.Errorf("nodeImpl.Proto cannot be nil")
 	}
 
-	if nodeImpl.Proto.Model != modelCdnos {
+	if !isModelCdnos(nodeImpl.Proto.Model) {
 		return nil, fmt.Errorf("unknown model")
 	}
 
@@ -121,7 +174,7 @@ var clientFn = func(c *rest.Config) (clientset.Interface, error) {
 }
 
 func (n *Node) Create(ctx context.Context) error {
-	if n.Impl.Proto.Model != modelCdnos {
+	if !isModelCdnos(n.Impl.Proto.Model) {
 		return fmt.Errorf("cannot create an instance of an unknown model")
 	}
 	return n.cdnosCreate(ctx)
@@ -175,6 +228,7 @@ func (n *Node) cdnosCreate(ctx context.Context) error {
 			InitSleep:      int(config.Sleep),
 			Resources:      node.ToResourceRequirements(nodeSpec.Constraints),
 			Labels:         nodeSpec.Labels,
+			NodeSelector:   extractNodeSelector(nodeSpec.Constraints),
 		},
 	}
 	if config.Cert != nil {
@@ -196,11 +250,51 @@ func (n *Node) cdnosCreate(ctx context.Context) error {
 	if _, err := cs.CdnosV1alpha1().Cdnoss(n.Namespace).Create(ctx, dut, metav1.CreateOptions{}); err != nil {
 		return fmt.Errorf("failed to create cdnos: %v", err)
 	}
+	// If a static LB IP is provided (via any service's outside_ip), try to update the existing Service
+	// created by the controller instead of creating a new one to avoid duplicates.
+	var desiredLBIP string
+	for _, v := range n.Proto.Services {
+		if v.OutsideIp != "" {
+			desiredLBIP = v.OutsideIp
+			break
+		}
+	}
+	if desiredLBIP != "" {
+		// Wait briefly for the controller to create its Service, then update it.
+		// We try multiple times to accommodate controller reconciliation.
+		for retries := 0; retries < 30; retries++ {
+			svcs, err := n.KubeClient.CoreV1().Services(n.Namespace).List(ctx, metav1.ListOptions{})
+			if err != nil {
+				return fmt.Errorf("failed to list services: %v", err)
+			}
+			updated := false
+			for i := range svcs.Items {
+				s := &svcs.Items[i]
+				// Heuristic: update services that target this node by selector or name pattern.
+				if s.Spec.Selector != nil && s.Spec.Selector["app"] == n.Name() || s.Name == fmt.Sprintf("service-%s", n.Name()) || s.Name == n.Name() {
+					if s.Annotations == nil {
+						s.Annotations = map[string]string{}
+					}
+					s.Spec.Type = corev1.ServiceTypeLoadBalancer
+					s.Spec.LoadBalancerIP = desiredLBIP
+					s.Annotations["metallb.universe.tf/loadBalancerIPs"] = desiredLBIP
+					if _, err := n.KubeClient.CoreV1().Services(n.Namespace).Update(ctx, s, metav1.UpdateOptions{}); err != nil {
+						return fmt.Errorf("failed to update drivenets service %q: %v", s.Name, err)
+					}
+					updated = true
+				}
+			}
+			if updated {
+				break
+			}
+			time.Sleep(1 * time.Second)
+		}
+	}
 	return nil
 }
 
 func (n *Node) Status(ctx context.Context) (node.Status, error) {
-	if n.Impl.Proto.Model != modelCdnos {
+	if !isModelCdnos(n.Impl.Proto.Model) {
 		return node.StatusUnknown, fmt.Errorf("invalid model specified")
 	}
 	return n.cdnosStatus(ctx)
@@ -228,7 +322,7 @@ func (n *Node) cdnosStatus(ctx context.Context) (node.Status, error) {
 }
 
 func (n *Node) Delete(ctx context.Context) error {
-	if n.Impl.Proto.Model != modelCdnos {
+	if !isModelCdnos(n.Impl.Proto.Model) {
 		return fmt.Errorf("unknown model")
 	}
 	return n.cdnosDelete(ctx)
@@ -302,6 +396,10 @@ func cdnosDefaults(pb *tpb.Node) *tpb.Node {
 	}
 	if pb.Labels["vendor"] == "" {
 		pb.Labels["vendor"] = defaultNodeClone.Labels["vendor"]
+	}
+	// Add a stable selector label for services.
+	if pb.Labels["app"] == "" {
+		pb.Labels["app"] = pb.Name
 	}
 
 	// Always explicitly specify that cdnos is a DUT, this cannot be overridden by the user.
