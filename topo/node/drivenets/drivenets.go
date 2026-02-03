@@ -247,7 +247,7 @@ func (n *Node) cdnosCreate(ctx context.Context) error {
 	if err != nil {
 		return fmt.Errorf("failed to get kubernetes client: %v", err)
 	}
-	if _, err := cs.CdnosV1alpha1().Cdnoss(n.Namespace).Create(ctx, dut, metav1.CreateOptions{}); err != nil {
+	if _, err := cs.CdnosV1alpha1().Cdnos(n.Namespace).Create(ctx, dut, metav1.CreateOptions{}); err != nil {
 		return fmt.Errorf("failed to create cdnos: %v", err)
 	}
 	// If a static LB IP is provided (via any service's outside_ip), try to update the existing Service
@@ -305,7 +305,7 @@ func (n *Node) cdnosStatus(ctx context.Context) (node.Status, error) {
 	if err != nil {
 		return node.StatusUnknown, err
 	}
-	got, err := cs.CdnosV1alpha1().Cdnoss(n.Namespace).Get(ctx, n.Name(), metav1.GetOptions{})
+	got, err := cs.CdnosV1alpha1().Cdnos(n.Namespace).Get(ctx, n.Name(), metav1.GetOptions{})
 	if err != nil {
 		return node.StatusUnknown, err
 	}
@@ -333,7 +333,7 @@ func (n *Node) cdnosDelete(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
-	return cs.CdnosV1alpha1().Cdnoss(n.Namespace).Delete(ctx, n.Name(), metav1.DeleteOptions{})
+	return cs.CdnosV1alpha1().Cdnos(n.Namespace).Delete(ctx, n.Name(), metav1.DeleteOptions{})
 }
 
 func (n *Node) ResetCfg(ctx context.Context) error {
