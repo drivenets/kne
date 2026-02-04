@@ -882,8 +882,8 @@ github.com/docker/go-connections v0.4.0/go.mod h1:Gbd7IOopHjR8Iph03tsViu4nIes5Xh
 github.com/docker/go-units v0.5.0 h1:69rxXcBk27SvSaaxTtLh/8llcHD8vYHT7WSdRZ/jvr4=
 github.com/docker/go-units v0.5.0/go.mod h1:fgPhTUdO+D/Jk86RDLlptpiXQzgHJF7gydDDbaIK4Dk=
 github.com/docopt/docopt-go v0.0.0-20180111231733-ee0de3bc6815/go.mod h1:WwZ+bS3ebgob9U8Nd0kOddGdZWjyMGR8Wziv+TBNwSE=
-github.com/drivenets/cdnos-controller v1.7.8 h1:wq2EEY0Zq6Vm+NNI9cy6BKsV6FRERdVhNnFyGrmVV5U=
-github.com/drivenets/cdnos-controller v1.7.8/go.mod h1:s+rGGwx3UZ8TECpeC3htXJv+3sF+VK7fFiYgesxD0vA=
+github.com/drivenets/cdnos-controller v1.7.9-0.20260203090153-c79db4f792ec h1:jH8/6I5QJocryqUzn11jrN6oLcZd2X0t5cVYvhvQdyM=
+github.com/drivenets/cdnos-controller v1.7.9-0.20260203090153-c79db4f792ec/go.mod h1:s+rGGwx3UZ8TECpeC3htXJv+3sF+VK7fFiYgesxD0vA=
 github.com/dustin/go-humanize v1.0.0/go.mod h1:HtrtbFcZ19U5GC7JDqmcUSB87Iq5E25KnS6fMYU6eOk=
 github.com/dustin/go-humanize v1.0.1/go.mod h1:Mu1zIs6XwVuF/gI1OepvI0qD18qycQx+mFykh5fBlto=
 github.com/emicklei/go-restful/v3 v3.12.1 h1:PJMDIM/ak7btuL8Ex0iYET9hxM3CI2sjZtzpL63nKAU=
