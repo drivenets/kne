@@ -7,7 +7,7 @@ require (
 	github.com/aristanetworks/arista-ceoslab-operator/v2 v2.1.2
 	github.com/blang/semver v3.5.1+incompatible
 	github.com/docker/docker v28.1.1+incompatible
-	github.com/drivenets/cdnos-controller v1.7.4
+	github.com/drivenets/cdnos-controller v1.7.8
 	github.com/ghodss/yaml v1.0.0
 	github.com/golang/glog v1.2.4
 	github.com/golang/mock v1.6.0
