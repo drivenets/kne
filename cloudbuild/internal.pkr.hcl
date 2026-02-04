@@ -52,9 +52,9 @@ build {
   provisioner "shell" {
     inline = [
       "echo Installing golang...",
-      "curl -O https://dl.google.com/go/go1.24.2.linux-amd64.tar.gz",
-      "sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.24.2.linux-amd64.tar.gz",
-      "rm go1.24.2.linux-amd64.tar.gz",
+      "curl -O https://dl.google.com/go/go1.25.4.linux-amd64.tar.gz",
+      "sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.25.4.linux-amd64.tar.gz",
+      "rm go1.25.4.linux-amd64.tar.gz",
       "echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc",
       "echo 'export PATH=$PATH:$(go env GOPATH)/bin' >> ~/.bashrc",
       "/usr/local/go/bin/go version",
@@ -101,8 +101,8 @@ build {
   provisioner "shell" {
     inline = [
       "echo Installing kubectl...",
-      "curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg",
-      "echo \"deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /\" | sudo tee /etc/apt/sources.list.d/kubernetes.list",
+      "curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg",
+      "echo \"deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /\" | sudo tee /etc/apt/sources.list.d/kubernetes.list",
       "sudo apt-get update",
       "sudo apt-get install kubelet kubeadm kubectl -y",
       "kubectl version --client",
