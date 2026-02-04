@@ -8,4 +8,4 @@ super-lint:
 	  -v $(LINTDIR):/tmp/lint \
 	  -v $$(pwd)/.github/linters:/tmp/lint/linters \
 	  -e LINTER_RULES_PATH=linters \
-	  ghcr.io/github/super-linter:slim-latest
+	  ghcr.io/github/super-linter:slim-v4
