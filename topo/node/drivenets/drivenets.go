@@ -102,15 +102,15 @@ func extractNodeSelector(constraints map[string]string) map[string]string {
 
 var (
 	defaultConstraints = node.Constraints{
-		CPU:    "500m", // 500 milliCPUs
-		Memory: "1Gi",  // 1 GB RAM
+		CPU:    "2",
+		Memory: "4Gi",
 	}
 	defaultNode = tpb.Node{
 		Services: map[uint32]*tpb.Service{
 			// https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?search=gnmi
 			22: {
 				Names:  []string{"ssh"},
-				Inside: 9339,
+				Inside: 22,
 			},
 			830: {
 				Names:  []string{"netconf"},
