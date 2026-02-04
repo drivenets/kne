@@ -162,4 +162,4 @@ require (
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.1 // indirect
 )
 
-replace github.com/drivenets/cdnos-controller => ../cdnos-controller
+// Local development can override this via a go.work replace instead of go.mod.
