@@ -88,8 +88,8 @@ func extractNodeSelector(constraints map[string]string) map[string]string {
 
 var (
 	defaultConstraints = node.Constraints{
-		CPU:    "500m", // 500 milliCPUs
-		Memory: "1Gi",  // 1 GB RAM
+		CPU:    "2",
+		Memory: "4Gi",
 	}
 	defaultNode = tpb.Node{
 		Services: map[uint32]*tpb.Service{
