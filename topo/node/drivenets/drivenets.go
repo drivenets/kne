@@ -207,11 +207,18 @@ func (n *Node) cdnosCreate(ctx context.Context) error {
 		}
 	}
 
+	// Add model to labels so the controller can access it
+	labels := make(map[string]string)
+	for k, v := range nodeSpec.Labels {
+		labels[k] = v
+	}
+	labels["model"] = strings.ToUpper(nodeSpec.Model)
+
 	dut := &cdnosv1.Cdnos{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      nodeSpec.Name,
 			Namespace: n.Namespace,
-			Labels:    nodeSpec.Labels,
+			Labels:    labels,
 		},
 		Spec: cdnosv1.CdnosSpec{
 			Image:          config.Image,
