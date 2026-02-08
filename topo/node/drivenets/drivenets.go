@@ -26,6 +26,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/drivenets/cdnos-controller/api/v1/clientset"
 	"github.com/openconfig/kne/topo/node"
@@ -255,7 +256,80 @@ func (n *Node) cdnosCreate(ctx context.Context) error {
 	if _, err := cs.CdnosV1alpha1().Cdnoss(n.Namespace).Create(ctx, dut, metav1.CreateOptions{}); err != nil {
 		return fmt.Errorf("failed to create cdnos: %v", err)
 	}
+	// Best-effort: annotate the controller-created Service with Azure LB annotations.
+	if err := n.annotateCdnosService(ctx); err != nil {
+		log.Warningf("failed to annotate service for %s: %v", n.Name(), err)
+	}
 	return nil
+}
+
+// isAzureAKS checks if the cluster is running on Azure AKS by looking for Azure-specific node labels.
+func (n *Node) isAzureAKS(ctx context.Context) bool {
+	nodes, err := n.KubeClient.CoreV1().Nodes().List(ctx, metav1.ListOptions{Limit: 1})
+	if err != nil || len(nodes.Items) == 0 {
+		return false
+	}
+	// Check for Azure-specific labels that are present on AKS nodes
+	node := nodes.Items[0]
+	azureLabels := []string{
+		"kubernetes.azure.com/agentpool",
+		"kubernetes.azure.com/cluster",
+		"kubernetes.azure.com/mode",
+		"node.kubernetes.io/instance-type",
+	}
+	for _, label := range azureLabels {
+		if _, exists := node.Labels[label]; exists {
+			return true
+		}
+	}
+	return false
+}
+
+// annotateCdnosService waits for the controller-created Service named "service-<node>"
+// and adds Azure LoadBalancer annotations required by the user.
+func (n *Node) annotateCdnosService(ctx context.Context) error {
+	if !n.isAzureAKS(ctx) {
+		return nil
+	}
+	log.Infof("Azure AKS detected; annotating Service managed by controller for %q", n.Name())
+	svcName := fmt.Sprintf("service-%s", n.Name())
+	deadline := time.Now().Add(2 * time.Minute)
+	for {
+		if time.Now().After(deadline) {
+			return fmt.Errorf("timeout waiting for service %q", svcName)
+		}
+		s, err := n.KubeClient.CoreV1().Services(n.Namespace).Get(ctx, svcName, metav1.GetOptions{})
+		if err != nil {
+			time.Sleep(1 * time.Second)
+			continue
+		}
+		if s.Annotations == nil {
+			s.Annotations = map[string]string{}
+		}
+		desired := map[string]string{
+			"service.beta.kubernetes.io/azure-load-balancer-internal": "true",
+		}
+		// Add port-specific annotations dynamically from the service ports
+		for _, port := range s.Spec.Ports {
+			annotationKey := fmt.Sprintf("service.beta.kubernetes.io/port_%d_no_probe_rule", port.Port)
+			desired[annotationKey] = "true"
+		}
+		changed := false
+		for k, v := range desired {
+			if s.Annotations[k] != v {
+				s.Annotations[k] = v
+				changed = true
+			}
+		}
+		if !changed {
+			return nil
+		}
+		if _, err := n.KubeClient.CoreV1().Services(n.Namespace).Update(ctx, s, metav1.UpdateOptions{}); err != nil {
+			time.Sleep(500 * time.Millisecond)
+			continue
+		}
+		return nil
+	}
 }
 
 func (n *Node) Status(ctx context.Context) (node.Status, error) {
