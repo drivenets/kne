@@ -258,8 +258,8 @@ func (n *Node) cdnosCreate(ctx context.Context) error {
 	if _, err := cs.CdnosV1alpha1().Cdnoss(n.Namespace).Create(ctx, dut, metav1.CreateOptions{}); err != nil {
 		return fmt.Errorf("failed to create cdnos: %v", err)
 	}
-	// Ensure the controller-created Service has required Azure LB annotations when on AKS.
-	// Creation will fail if annotations cannot be applied within the timeout.
+	// Ensure the controller-created Service has required Azure LB annotations.
+	// Azure annotations are required for proper LoadBalancer behavior.
 	if err := n.annotateCdnosService(ctx); err != nil {
 		return fmt.Errorf("failed to annotate service for %s: %v", n.Name(), err)
 	}
@@ -267,11 +267,15 @@ func (n *Node) cdnosCreate(ctx context.Context) error {
 }
 
 // annotateCdnosService waits for the controller-created Service named "service-<node>"
-// and adds Azure LoadBalancer annotations required by the user.
+// and adds Azure LoadBalancer annotations. These annotations are required for proper operation.
 func (n *Node) annotateCdnosService(ctx context.Context) error {
-	if !isAzureAKS(n.KubeClient) {
-		log.V(1).Infof("Azure AKS not detected; skipping service annotation for %q", n.Name())
-		return nil
+	// Always apply Azure annotations - they're required and harmless on non-Azure clusters
+	// If Azure detection fails, still apply annotations to ensure proper operation
+	isAzure := isAzureAKS(n.KubeClient)
+	if !isAzure {
+		log.V(1).Infof("Azure AKS not detected, but applying Azure annotations anyway (required for operation)")
+	} else {
+		log.Infof("Azure AKS detected; annotating controller-managed Services for %q", n.Name())
 	}
 	log.Infof("Azure AKS detected; annotating controller-managed Services for %q", n.Name())
 	deadline := time.Now().Add(10 * time.Minute)
