@@ -600,9 +600,9 @@ func isAzureAKS(k kubernetes.Interface) bool {
 		log.V(1).Infof("AKS detection overridden via KNE_FORCE_AZURE_ANNOTATIONS")
 		return true
 	}
-	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	nodes, err := k.CoreV1().Nodes().List(ctx, metav1.ListOptions{})
+	nodes, err := k.CoreV1().Nodes().List(ctx, metav1.ListOptions{Limit: 1})
 	if err != nil {
 		log.V(1).Infof("AKS detection: failed to list nodes: %v", err)
 		return false
