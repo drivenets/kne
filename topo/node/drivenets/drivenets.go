@@ -217,6 +217,14 @@ func (n *Node) cdnosCreate(ctx context.Context) error {
 	}
 	labels["model"] = strings.ToUpper(nodeSpec.Model)
 
+	// Count interfaces for the init container. Always include +1 for
+	// the K8s management interface (eth0) unless the user already
+	// declared it in the interfaces map.
+	ifaceCount := len(nodeSpec.Interfaces)
+	if _, hasEth0 := nodeSpec.Interfaces["eth0"]; !hasEth0 {
+		ifaceCount++
+	}
+
 	dut := &cdnosv1.Cdnos{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      nodeSpec.Name,
@@ -232,7 +240,7 @@ func (n *Node) cdnosCreate(ctx context.Context) error {
 			ConfigFile:     config.ConfigFile,
 			InitImage:      config.InitImage,
 			Ports:          ports,
-			InterfaceCount: len(nodeSpec.Interfaces),
+			InterfaceCount: ifaceCount,
 			InitSleep:      int(config.Sleep),
 			Resources:      node.ToResourceRequirements(nodeSpec.Constraints),
 			Labels:         nodeSpec.Labels,
