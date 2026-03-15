@@ -224,6 +224,18 @@ func (d *Deployment) Deploy(ctx context.Context, kubecfg string) (rerr error) {
 		log.Warningf("Failed to start pod watcher: %v", err)
 	} else {
 		w.SetProgress(d.Progress)
+		// Restrict watcher to known namespaces managed during deployment to avoid noise
+		// from unrelated user workloads in other namespaces.
+		w.AllowNamespaces(
+			"kube-system",
+			"metallb-system",
+			"meshnet",
+			"arista-ceoslab-operator-system",
+			"lemming-operator",
+			"srlinux-controller-system",
+			"ixiatg-op-system",
+			"cdnos-controller-system",
+		)
 		defer func() {
 			cancel()
 			rerr = w.Cleanup(rerr)
@@ -621,7 +633,7 @@ func (k *KindSpec) checkDependencies() error {
 
 func (k *KindSpec) create() error {
 	// Create a KNE dir under /tmp intended to hold files to be mounted into the kind cluster.
-	if err := os.MkdirAll("/tmp/kne", os.ModePerm); err != nil {
+	if err := os.MkdirAll("/tmp/kne", 0750); err != nil {
 		return err
 	}
 	if k.Recycle {
