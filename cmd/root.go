@@ -23,6 +23,7 @@ import (
 	"github.com/openconfig/kne/cmd/deploy"
 	"github.com/openconfig/kne/cmd/topology"
 	"github.com/openconfig/kne/topo"
+	"github.com/openconfig/kne/version"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"k8s.io/client-go/util/homedir"
@@ -64,7 +65,18 @@ environment.`,
 	root.AddCommand(topology.New())
 	root.AddCommand(deploy.NewDeploy())
 	root.AddCommand(deploy.NewTeardown())
+	root.AddCommand(newVersionCmd())
 	return root
+}
+
+func newVersionCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "version",
+		Short: "Print the version",
+		Run: func(cmd *cobra.Command, args []string) {
+			fmt.Fprintln(cmd.OutOrStdout(), version.String())
+		},
+	}
 }
 
 func defaultCfgFile() string {

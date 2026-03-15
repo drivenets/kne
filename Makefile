@@ -29,10 +29,14 @@ up: kind-start
 ## Destroy test environment
 down: kind-stop
 
+LDFLAGS := -s -w \
+	-X github.com/openconfig/kne/version.Version=$(TAG) \
+	-X github.com/openconfig/kne/version.Commit=$(COMMIT)
+
 .PHONY: build
 ## Build kne
 build:
-	CGO_ENABLED=0 go build -o $(KNE_CLI_BIN) -ldflags="-s -w" kne_cli/main.go
+	CGO_ENABLED=0 go build -o $(KNE_CLI_BIN) -ldflags="$(LDFLAGS)" kne_cli/main.go
 
 .PHONY: install
 ## Install kne cli binary to user's local bin dir
