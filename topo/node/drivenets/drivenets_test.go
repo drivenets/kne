@@ -108,6 +108,57 @@ func TestCdnosDefaults(t *testing.T) {
 	}
 }
 
+func TestMeshnetInterfaceCount(t *testing.T) {
+	tests := []struct {
+		name   string
+		ifaces map[string]*tpb.Interface
+		want   int
+	}{
+		{
+			name:   "nil map",
+			ifaces: nil,
+			want:   0,
+		},
+		{
+			name:   "empty map",
+			ifaces: map[string]*tpb.Interface{},
+			want:   0,
+		},
+		{
+			name: "only meshnet interfaces",
+			ifaces: map[string]*tpb.Interface{
+				"eno0": {IntName: "eno0"},
+				"eno1": {IntName: "eno1"},
+			},
+			want: 2,
+		},
+		{
+			name: "eth0 excluded",
+			ifaces: map[string]*tpb.Interface{
+				"eth0": {IntName: "eth0", Name: "Management1"},
+				"eno0": {IntName: "eno0"},
+				"eno1": {IntName: "eno1"},
+			},
+			want: 2,
+		},
+		{
+			name: "only eth0",
+			ifaces: map[string]*tpb.Interface{
+				"eth0": {IntName: "eth0", Name: "Management1"},
+			},
+			want: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := meshnetInterfaceCount(tt.ifaces)
+			if got != tt.want {
+				t.Errorf("meshnetInterfaceCount() = %d, want %d", got, tt.want)
+			}
+		})
+	}
+}
+
 func TestDefaultNodeConstraints(t *testing.T) {
 	n := &Node{}
 	constraints := n.DefaultNodeConstraints()

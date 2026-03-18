@@ -232,7 +232,7 @@ func (n *Node) cdnosCreate(ctx context.Context) error {
 			ConfigFile:     config.ConfigFile,
 			InitImage:      config.InitImage,
 			Ports:          ports,
-			InterfaceCount: len(nodeSpec.Interfaces),
+			InterfaceCount: meshnetInterfaceCount(nodeSpec.Interfaces),
 			InitSleep:      int(config.Sleep),
 			Resources:      node.ToResourceRequirements(nodeSpec.Constraints),
 			Labels:         nodeSpec.Labels,
@@ -585,6 +585,17 @@ func cdnosDefaults(pb *tpb.Node) *tpb.Node {
 
 func (n *Node) DefaultNodeConstraints() node.Constraints {
 	return defaultConstraints
+}
+
+// meshnetInterfaceCount returns the number of interfaces that meshnet will
+// actually create. eth0 is the management interface and is excluded from
+// meshnet links (see node.GetNodeLinks), so it must not be counted.
+func meshnetInterfaceCount(ifaces map[string]*tpb.Interface) int {
+	n := len(ifaces)
+	if _, ok := ifaces["eth0"]; ok {
+		n--
+	}
+	return n
 }
 
 func init() {
