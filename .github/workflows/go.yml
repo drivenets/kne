@@ -37,7 +37,11 @@ jobs:
         run: go build -v ./...
 
       - name: Run Tests
-        run: go test -v $(go list ./... | grep -E -v /cloudbuild)
+        # Exclude:
+        # - /cloudbuild         needs gcloud + project credentials
+        # - /topo/node/cisco    upstream scrapli test hangs without a real device
+        # - /topo/node/juniper  upstream scrapli test hangs without a real device
+        run: go test -v $(go list ./... | grep -E -v '/cloudbuild|/topo/node/cisco|/topo/node/juniper')
 
   linter:
     uses: openconfig/common-ci/.github/workflows/linter.yml@v0.2.0
